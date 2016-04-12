@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 18:43:31 2016 Luca Ungaro
-** Last update Tue Apr 12 21:07:06 2016 Luca Ungaro
+** Last update Tue Apr 12 21:51:34 2016 Luca Ungaro
 */
 
 /*
@@ -33,9 +33,6 @@ void	bousti_stack_append(t_bousti_list	**stack,
   bousti_put_in_end_dblist(stack, elem);
 }
 
-/*
-** DOC :: upon node ot node->data
-*/
 void		bousti_stack_pop(t_bousti_list	**stack,
 				 void		*elem)
 {
