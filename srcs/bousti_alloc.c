@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 18:06:53 2016 Luca Ungaro
-** Last update Tue Apr 12 21:27:18 2016 Luca Ungaro
+** Last update Tue Apr 12 21:49:43 2016 Luca Ungaro
 */
 
 /*
@@ -29,10 +29,10 @@
 
 t_bousti_list		*g_alloc_list = NULL;
 
-t_sysmalloc	g_std_malloc = &malloc;
-t_sysrealloc	g_std_realloc = &realloc;
-t_syscalloc	g_std_calloc = &calloc;
-t_sysfree	g_std_free = &free;
+t_sysmalloc		g_std_malloc = &malloc;
+t_sysrealloc		g_std_realloc = &realloc;
+t_syscalloc		g_std_calloc = &calloc;
+t_sysfree		g_std_free = &free;
 
 void			*bousti_malloc(size_t	size)
 {
