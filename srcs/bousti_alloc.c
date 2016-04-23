@@ -5,34 +5,18 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 18:06:53 2016 Luca Ungaro
-** Last update Tue Apr 12 21:49:43 2016 Luca Ungaro
+** Last update Sat Apr 23 14:17:20 2016 Luca Ungaro
 */
 
-/*
-** +---------------------------------------------------------------------------+
-** |                                                                           |
-** | Boustifaille corp's library overload                                      |
-** |                                                                           |
-** | This file and all the other ones with it are under BeerWare license       |
-** | (revision 42) :                                                           |
-** |                                                                           |
-** |   | <luca.ungaro@epitech.eu> wrote this file. As long as you retain this  |
-** |   | notice you can do whatever you want with this stuff. If we meet some  |
-** |   | day and you think this stuff is worth it, you can buy me a beer in    |
-** |   | return.                                                               |
-** |   |                                                                       |
-** |   | Luca Ungaro, for Boustifaille Corp.                                   |
-** |                                                                           |
-** +---------------------------------------------------------------------------+
-*/
-# include "bouf.h"
+#include "bouf.h"
+#include "boustifaille/alloc_guard_bouf.h"
 
-t_bousti_list		*g_alloc_list = NULL;
+t_sysmalloc	g_std_malloc = &malloc;
+t_sysrealloc	g_std_realloc = &realloc;
+t_syscalloc	g_std_calloc = &calloc;
+t_sysfree	g_std_free = &free;
 
-t_sysmalloc		g_std_malloc = &malloc;
-t_sysrealloc		g_std_realloc = &realloc;
-t_syscalloc		g_std_calloc = &calloc;
-t_sysfree		g_std_free = &free;
+t_bousti_list	*g_alloc_list = NULL;
 
 void			*bousti_malloc(size_t	size)
 {
@@ -47,13 +31,8 @@ void			*bousti_malloc(size_t	size)
       new->size = size;
       bousti_stack_append(&g_alloc_list, new);
     }
-#ifdef BOUSTI_ALLOCATOR_ABORT
   else
-    {
-      bousti_fdprintf(STDERR, "%s\n", BOUSTI_ALLOC_ERROR_MSG);
-      exit(BOUSTI_ALLOC_ERROR);
-    }
-#endif
+    bousti_abort();
   return (ptr);
 }
 
@@ -77,13 +56,8 @@ void			*bousti_realloc(void	*ptr,
       if (new)
 	bousti_stack_append(&g_alloc_list, update);
     }
-#ifdef BOUSTI_ALLOCATOR_ABORT
   else
-    {
-      bousti_fdprintf(STDERR, "%s\n", BOUSTI_ALLOC_ERROR_MSG);
-      exit(BOUSTI_ALLOC_ERROR);
-    }
-#endif
+    bousti_abort();
   return (ptr);
 }
 
@@ -101,12 +75,7 @@ void			*bousti_calloc(size_t	nmemb,
       new->size = nmemb * size;
       bousti_stack_append(&g_alloc_list, new);
     }
-#ifdef BOUSTI_ALLOCATOR_ABORT
   else
-    {
-      bousti_fdprintf(STDERR, "%s\n", BOUSTI_ALLOC_ERROR_MSG);
-      exit(BOUSTI_ALLOC_ERROR);
-    }
-#endif
+    bousti_abort();
   return (ptr);
 }

@@ -5,59 +5,53 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 19:13:50 2016 Luca Ungaro
-** Last update Tue Apr 12 21:07:28 2016 Luca Ungaro
+** Last update Fri Apr 15 11:24:09 2016 Luca Ungaro
 */
 
-/*
-** +---------------------------------------------------------------------------+
-** |                                                                           |
-** | Boustifaille corp's library overload                                      |
-** |                                                                           |
-** | This file and all the other ones with it are under BeerWare license       |
-** | (revision 42) :                                                           |
-** |                                                                           |
-** |   | <luca.ungaro@epitech.eu> wrote this file. As long as you retain this  |
-** |   | notice you can do whatever you want with this stuff. If we meet some  |
-** |   | day and you think this stuff is worth it, you can buy me a beer in    |
-** |   | return.                                                               |
-** |   |                                                                       |
-** |   | Luca Ungaro, for Boustifaille Corp.                                   |
-** |                                                                           |
-** +---------------------------------------------------------------------------+
-*/
 # include "bouf.h"
 
-void			bousti_free(void	*ptr)
+static void	_free(t_bousti_alloc	*elem)
 {
-  t_bousti_alloc	*elem;
-
-  elem = find_with_address(ptr);
   if (elem)
     {
-      bousti_stack_pop(&g_alloc_list, elem);
       if (elem->addr)
 	free(elem->addr);
+      bousti_stack_pop(&g_alloc_list, elem);
     }
   free(elem);
 }
 
-void			bousti_free_everything(void)
+static void	_unique_free(t_bousti_unique_alloc	*elem)
 {
-  t_bousti_list		*loop;
-  t_bousti_alloc	*elem;
+  void		*ptr;
 
-  loop = g_alloc_list;
-  while (loop && loop->data)
+  ptr = elem->owner;
+  while (elem)
     {
-      elem = (t_bousti_alloc *)(loop->data);
-      if (elem)
-	{
-	  bousti_stack_pop(&g_alloc_list, elem);
-	  if (elem->addr)
-	    std_free(elem->addr);
-	  std_free(elem);
-	}
-      loop = loop->next;
+      if (elem->addr)
+	free(elem->addr);
+      bousti_stack_pop(&g_unique_alloc_list, elem);
+      elem = find_unique_with_owner(ptr);
     }
-  std_free(g_alloc_list);
+  free(elem);
+}
+
+/*
+**
+** if it's a unique container, we find some uniques owned by it
+** and whether it's a container or not, it shall be freed itself !
+*/
+void			bousti_free(void	*ptr)
+{
+  t_bousti_alloc	*elem;
+  t_bousti_unique_alloc	*unique_elem;
+
+  unique_elem = find_unique_with_owner(ptr);
+  if (unique_elem)
+    _unique_free(unique_elem);
+  elem = find_with_address(ptr);
+  if (elem)
+    _free(elem);
+  else
+    std_free(ptr);
 }

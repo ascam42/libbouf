@@ -5,28 +5,13 @@
 ## Login   <ungaro_l@epitech.net>
 ## 
 ## Started on  Fri Oct  9 09:04:28 2015 Luca Ungaro
-## Last update Tue Apr 12 21:04:31 2016 Luca Ungaro
-##
-
-##
-## +---------------------------------------------------------------------------+
-## |                                                                           |
-## | Boustifaille corp's library overload                                      |
-## |                                                                           |
-## | This file and all the other ones with it are under BeerWare license       |
-## | (revision 42) :                                                           |
-## |                                                                           |
-## |   | <luca.ungaro@epitech.eu> wrote this file. As long as you retain this  |
-## |   | notice you can do whatever you want with this stuff. If we meet some  |
-## |   | day and you think this stuff is worth it, you can buy me a beer in    |
-## |   | return.                                                               |
-## |   |                                                                       |
-## |   | Luca Ungaro, for Boustifaille Corp.                                   |
-## |                                                                           |
-## +---------------------------------------------------------------------------+
+## Last update Mon Apr 18 16:45:08 2016 Luca Ungaro
 ##
 
 AR	= ar rc
+EXTRACT	= ar x
+LIST	= ar t
+
 RANLIB	= ranlib
 CC	= gcc
 
@@ -47,17 +32,27 @@ SRCS	= srcs/list/bousti_free_list.c \
 	  srcs/list/bousti_put_in_list.c \
 	  srcs/list/bousti_put_in_circ.c \
 	  srcs/list/bousti_show_list.c \
+	  srcs/bousti_unique_alloc.c \
 	  srcs/bousti_alloc.c \
 	  srcs/bousti_alloc_get.c \
+	  srcs/bousti_alloc_size.c \
 	  srcs/bousti_stack.c \
 	  srcs/bousti_free.c \
+	  srcs/bousti_garbage_collect.c \
+	  srcs/bousti_abort.c \
 	  srcs/bousti_stralloc.c
+
+ifdef BOUSTI_ARCHIVE
+BOUSTI_ARCHIVE_OBJECTS = $(shell $(LIST) $(BOUSTI_ARCHIVE))
+else
+BOUSTI_ARCHIVE_OBJECTS =
+endif
 
 INCDEST	= ../
 
 HEAD	= include/bouf.h \
-	include/boustifaille/hidden_bouf.h \
-	include/boustifaille/list.h \
+	  include/boustifaille/hidden_bouf.h \
+	  include/boustifaille/list.h \
 
 OBJS	= $(SRCS:.c=.o)
 
@@ -66,11 +61,17 @@ override CFLAGS	+= -Iinclude
 all:	$(NAME)
 
 $(NAME):	$(OBJS)
-	@$(AR) $(NAME) $(OBJS) && \
+ifdef BOUSTI_ARCHIVE
+	@$(EXTRACT) $(BOUSTI_ARCHIVE)
+endif
+	@$(AR) $(NAME) $(OBJS) $(BOUSTI_ARCHIVE_OBJECTS) && \
 	$(RANLIB) $(NAME) && \
 	$(CP) $(HEAD) $(INCDEST) && \
 	$(ECHO) "\n" [ $(GREEN)BOUSTIFAILLE : OK$(DEFAULT) ] "\n" || \
 	$(ECHO) "\n" [ $(RED)BOUSTIFAILLE : KO$(DEFAULT) ] "\n"
+ifdef BOUSTI_ARCHIVE
+	@$(RM) $(BOUSTI_ARCHIVE_OBJECTS)
+endif
 
 .c.o:
 	@$(CC) -c $< -o $@ $(CFLAGS) && \

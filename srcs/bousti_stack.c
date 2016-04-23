@@ -5,26 +5,9 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 18:43:31 2016 Luca Ungaro
-** Last update Tue Apr 12 21:51:34 2016 Luca Ungaro
+** Last update Fri Apr 15 10:59:38 2016 Luca Ungaro
 */
 
-/*
-** +---------------------------------------------------------------------------+
-** |                                                                           |
-** | Boustifaille corp's library overload                                      |
-** |                                                                           |
-** | This file and all the other ones with it are under BeerWare license       |
-** | (revision 42) :                                                           |
-** |                                                                           |
-** |   | <luca.ungaro@epitech.eu> wrote this file. As long as you retain this  |
-** |   | notice you can do whatever you want with this stuff. If we meet some  |
-** |   | day and you think this stuff is worth it, you can buy me a beer in    |
-** |   | return.                                                               |
-** |   |                                                                       |
-** |   | Luca Ungaro, for Boustifaille Corp.                                   |
-** |                                                                           |
-** +---------------------------------------------------------------------------+
-*/
 # include "bouf.h"
 
 void	bousti_stack_append(t_bousti_list	**stack,
@@ -47,20 +30,14 @@ void		bousti_stack_pop(t_bousti_list	**stack,
 	elem_node = (t_bousti_list *)(elem);
       if (elem_node)
 	{
-	  prev = elem_node->prev;
 	  next = elem_node->next;
+	  prev = elem_node->prev;
 	  if (prev)
 	    prev->next = next;
 	  if (next)
 	    next->prev = prev;
-	  if (elem != elem_node)
-	    {
-	      bousti_free(elem_node);
-	      elem_node = NULL;
-	    }
 	}
-      bousti_free(elem);
-      if (!(*stack) && next)
+      if (!(*stack) || (*stack) == elem)
 	*stack = next;
     }
 }

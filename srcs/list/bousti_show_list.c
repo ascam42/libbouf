@@ -5,26 +5,9 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Wed Nov  4 10:54:25 2015 Luca Ungaro
-** Last update Tue Apr 12 20:37:23 2016 Luca Ungaro
+** Last update Mon Apr 18 17:28:31 2016 Luca Ungaro
 */
 
-/*
-** +---------------------------------------------------------------------------+
-** |                                                                           |
-** | Boustifaille corp's library overload                                      |
-** |                                                                           |
-** | This file and all the other ones with it are under BeerWare license       |
-** | (revision 42) :                                                           |
-** |                                                                           |
-** |   | <luca.ungaro@epitech.eu> wrote this file. As long as you retain this  |
-** |   | notice you can do whatever you want with this stuff. If we meet some  |
-** |   | day and you think this stuff is worth it, you can buy me a beer in    |
-** |   | return.                                                               |
-** |   |                                                                       |
-** |   | Luca Ungaro, for Boustifaille Corp.                                   |
-** |                                                                           |
-** +---------------------------------------------------------------------------+
-*/
 #include "bouf.h"
 
 void	bousti_show_list(t_list *list)

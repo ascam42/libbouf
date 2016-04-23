@@ -5,26 +5,9 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Nov 24 13:19:36 2015 Luca Ungaro
-** Last update Tue Apr 12 20:37:16 2016 Luca Ungaro
+** Last update Mon Apr 18 17:29:39 2016 Luca Ungaro
 */
 
-/*
-** +---------------------------------------------------------------------------+
-** |                                                                           |
-** | Boustifaille corp's library overload                                      |
-** |                                                                           |
-** | This file and all the other ones with it are under BeerWare license       |
-** | (revision 42) :                                                           |
-** |                                                                           |
-** |   | <luca.ungaro@epitech.eu> wrote this file. As long as you retain this  |
-** |   | notice you can do whatever you want with this stuff. If we meet some  |
-** |   | day and you think this stuff is worth it, you can buy me a beer in    |
-** |   | return.                                                               |
-** |   |                                                                       |
-** |   | Luca Ungaro, for Boustifaille Corp.                                   |
-** |                                                                           |
-** +---------------------------------------------------------------------------+
-*/
 #ifndef LIST_H_
 # define LIST_H_
 
@@ -77,6 +60,7 @@ int	bousti_put_in_circ(t_list **list, void *data);
 ** bousti_show_list.c
 */
 void	bousti_show_list(t_list *list);
+int	bousti_get_list_len(t_list *list);
 char	**bousti_list_to_wordtab(t_list *list);
 /*
 ** bousti_free_list.c

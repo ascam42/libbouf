@@ -5,26 +5,9 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 16:44:51 2016 Luca Ungaro
-** Last update Tue Apr 12 21:38:34 2016 Luca Ungaro
+** Last update Mon Apr 18 16:17:55 2016 Luca Ungaro
 */
 
-/*
-** +---------------------------------------------------------------------------+
-** |                                                                           |
-** | Boustifaille corp's library overload                                      |
-** |                                                                           |
-** | This file and all the other ones with it are under BeerWare license       |
-** | (revision 42) :                                                           |
-** |                                                                           |
-** |   | <luca.ungaro@epitech.eu> wrote this file. As long as you retain this  |
-** |   | notice you can do whatever you want with this stuff. If we meet some  |
-** |   | day and you think this stuff is worth it, you can buy me a beer in    |
-** |   | return.                                                               |
-** |   |                                                                       |
-** |   | Luca Ungaro, for Boustifaille Corp.                                   |
-** |                                                                           |
-** +---------------------------------------------------------------------------+
-*/
 #ifndef HIDDEN_BOUF_H_
 # define HIDDEN_BOUF_H_
 
@@ -44,7 +27,7 @@
 */
 #  if defined(BOUSTI_LIBMY)
 
-#   include "libmy.h"
+#   include BOUSTI_LIBMY
 
 #   define bousti_putchar	my_putchar
 #   define bousti_printf	my_printf
@@ -112,8 +95,10 @@
 #  define STDOUT		STDOUT_FILENO
 #  define STDERR		STDERR_FILENO
 
-typedef bool		t_bousti_ok;
+#  define _STRINGIFY(str)	#str
+#  define STRINGIFY(macro)	_STRINGIFY(macro)
 
+typedef bool			t_bousti_ok;
 
 /*
 ** -----------------------------------------------------------------------------
@@ -142,6 +127,46 @@ typedef bool		t_bousti_ok;
 **
 ** +---------------------------------------------------------------------------+
 ** |                                                                           |
+** | The BOUSTI_ALLOCATOR overloads system's malloc and :                      |
+** |     - Stores size allocated at each address (and makes it accessible)     |
+** |     - Can exit program on error (if BOUSTI_ALLOCATOR_ABORT is defined)    |
+** |     - Can free everything allocated in one function call                  |
+** |                                                                           |
+** | bousti_[...]alloc() : works exactly like system's [...]alloc()            |
+** | bousti_get_allocated_size() : returns the size allocated at an address    |
+** | bousti_get_total_allocated_size() : returns the total allocated size      |
+** | bousti_free() : works exactly like system's free()                        |
+** | bousti_garbage_collect() : frees all allocated blocks, plus internal      |
+** |                            stack. SHALL BE CALLED AT THE END OF YOUR      |
+** |                            PROGRAM EVEN IF EVERYTHING ELSE WAS FREED      |
+** |                                                                           |
+** | Note : it goes without saying that bousti_get[...]size() and              |
+** |        bousti_free[...] supposes your allocation has been made with       |
+** |        bousti_[...]alloc();                                               |
+** |                                                                           |
+** +---------------------------------------------------------------------------+
+*/
+void			*bousti_malloc(size_t			size);
+void			*bousti_realloc(void			*pre,
+					size_t			size);
+void			*bousti_calloc(size_t			nmemb,
+				       size_t			size);
+void			*bousti_unique_malloc(void		*owner,
+					      size_t		size);
+void			*bousti_unique_realloc(void		*owner,
+					       void		*ptr,
+					       size_t		size);
+void			*bousti_unique_calloc(void		*owner,
+					      size_t		nmemb,
+					      size_t		size);
+size_t			bousti_get_allocated_size(void		*addr); // consider uniques
+size_t			bousti_get_total_allocated_size(void);
+void			bousti_free(void			*ptr);
+void			bousti_garbage_collect(void);
+
+/*
+** +---------------------------------------------------------------------------+
+** |                                                                           |
 ** | BOUSTI_ALLOCATOR_ABORT :                                                  |
 ** |      Exit when an allocation fails (with a nice and clean error message)  |
 ** |                                                                           |
@@ -156,6 +181,10 @@ typedef bool		t_bousti_ok;
 
 # endif /* !BOUSTI_ALLOCATOR_ABORT */
 
+/*
+**
+** BEGIN "you're not interested in this part"
+*/
 typedef void			*(*t_sysmalloc)(size_t	size);
 typedef void			*(*t_sysrealloc)(void	*ptr,
 						 size_t	size);
@@ -173,10 +202,6 @@ extern t_sysfree		g_std_free;
 # define std_calloc		g_std_calloc
 # define std_free		g_std_free
 
-/*
-**
-** No, BUNNY_ALLOCATOR has nothing to do with it... :p
-*/
 # ifdef BOUSTI_ALLOCATOR_OVERLOAD
 
 #  define malloc		bousti_malloc
@@ -186,31 +211,44 @@ extern t_sysfree		g_std_free;
 
 # endif /* !BOUSTI_ALLOCATOR_OVERLOAD */
 
-typedef struct		s_bousti_alloc
+/*
+**
+** CLASSIC allocation
+*/
+typedef struct			s_bousti_alloc
 {
-  void			*addr;
-  size_t		size;
-}			t_bousti_alloc;
+  void				*addr;
+  size_t			size;
+}				t_bousti_alloc;
 
-extern t_bousti_list	*g_alloc_list;
+extern t_bousti_list		*g_alloc_list;
 
-void		*bousti_malloc(size_t			size);
-void		*bousti_realloc(void			*pre,
-				size_t			size);
-void		*bousti_calloc(size_t			nmemb,
-			       size_t			size);
-size_t		bousti_get_allocated_size(void		*addr);
-size_t		bousti_get_total_allocated_size(void);
-void		bousti_free(void			*ptr);
-void		bousti_free_everything(void);
+/*
+**
+** UNIQUE allocation (ever dreamed of std::unique_ptr ?)
+*/
+typedef struct			s_bousti_unique_alloc
+{
+  void				*owner;
+  void				*addr;
+  size_t			size;
+}				t_bousti_unique_alloc;
+
+extern t_bousti_list		*g_unique_alloc_list;
+
 /*
 **
 ** Without the Holy Norm, this function would have been static :
 */
-t_bousti_alloc	*find_with_address(void		*addr);
+t_bousti_alloc		*find_with_address(void		*addr);
+t_bousti_unique_alloc	*find_unique_with_address(void	*addr);
+t_bousti_unique_alloc	*find_unique_with_owner(void	*addr);
+void			bousti_abort(void);
+/*
+**
+** END "you're not interested in this part"
+*/
 
-/* !!!! Conflit : si on bousti_malloc pour les strings et qu'on les free à la  */
-/*                main, puis qu'on leck_check... C'est le zouf ! double-free ! */
 /*
 ** +---------------------------------------------------------------------------+
 ** |                                                                           |
@@ -221,12 +259,16 @@ t_bousti_alloc	*find_with_address(void		*addr);
 ** |                                                                           |
 ** | Note : they DO use the BOUSTI_ALLOCATOR (whether it's overloaded or not)  |
 ** |                                                                           |
+** | Warn : considering bousti_stralloc[...] uses bousti_malloc, i'ts really   |
+** |        MORE THAN RECOMMANDED to free them with bousti_free AND to call    |
+** |        bousti_garbage_collect() at least at the end of your program       |
+** |                                                                           |
 ** +---------------------------------------------------------------------------+
 */
-char		*bousti_stralloc(int			str_nb,
-				 ...);
-char		*bousti_stralloc_not_repeat(int		str_nb,
-					    ...);
+char			*bousti_stralloc(int			str_nb,
+					 ...);
+char			*bousti_stralloc_not_repeat(int		str_nb,
+						    ...);
 
 /*
 ** +---------------------------------------------------------------------------+
@@ -235,18 +277,18 @@ char		*bousti_stralloc_not_repeat(int		str_nb,
 ** |                                                                           |
 ** +---------------------------------------------------------------------------+
 */
-void		bousti_stack_append(t_bousti_list	**stack,
-				    void		*elem);
+void			bousti_stack_append(t_bousti_list	**stack,
+					    void		*elem);
 /*
 **
 ** Note : bousti_stack_pop
 **    --> 'elem' parameter can be either addr of a node or of a node's ->data
 */
-void		bousti_stack_pop(t_bousti_list		**stack,
-				 void			*elem);
-t_bousti_list	*bousti_stack_get_by_data(t_bousti_list	*list,
-					  void		*data);
+void			bousti_stack_pop(t_bousti_list		**stack,
+					 void			*elem);
+t_bousti_list		*bousti_stack_get_by_data(t_bousti_list	*list,
+						  void		*data);
 
-# endif /* !defined(BOUSTI_LIBMY) && defined(BOUSTI_LIBC) */
+# endif /* !BOUF_H_ */
 
 #endif /* !HIDDEN_BOUF_H_ */

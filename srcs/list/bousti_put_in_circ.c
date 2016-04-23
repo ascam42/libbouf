@@ -5,38 +5,21 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Wed Dec  2 10:21:18 2015 Luca Ungaro
-** Last update Tue Apr 12 20:38:09 2016 Luca Ungaro
+** Last update Mon Apr 18 17:05:05 2016 Luca Ungaro
 */
 
-/*
-** +---------------------------------------------------------------------------+
-** |                                                                           |
-** | Boustifaille corp's library overload                                      |
-** |                                                                           |
-** | This file and all the other ones with it are under BeerWare license       |
-** | (revision 42) :                                                           |
-** |                                                                           |
-** |   | <luca.ungaro@epitech.eu> wrote this file. As long as you retain this  |
-** |   | notice you can do whatever you want with this stuff. If we meet some  |
-** |   | day and you think this stuff is worth it, you can buy me a beer in    |
-** |   | return.                                                               |
-** |   |                                                                       |
-** |   | Luca Ungaro, for Boustifaille Corp.                                   |
-** |                                                                           |
-** +---------------------------------------------------------------------------+
-*/
 #include "bouf.h"
 
 t_list		*bousti_create_root(void)
 {
   t_list	*root;
 
-  root = std_malloc(sizeof(t_list *));
+  root = std_malloc(sizeof(t_list));
   if (root)
     {
       root->data = NULL;
-      root->next = NULL;
       root->prev = NULL;
+      root->next = NULL;
     }
   return (root);
 }
@@ -48,7 +31,7 @@ int		bousti_put_in_end_dbcirc(t_list **list, void *data)
   t_list	*root;
 
   ret = 1;
-  new_elem = std_malloc(sizeof(t_list *));
+  new_elem = std_malloc(sizeof(t_list));
   if (new_elem)
     {
       new_elem->data = data;
@@ -77,7 +60,7 @@ int		bousti_put_in_dbcirc(t_list **list, void *data)
   t_list	*root;
 
   ret = 1;
-  new_elem = std_malloc(sizeof(t_list *));
+  new_elem = std_malloc(sizeof(t_list));
   if (new_elem)
     {
       new_elem->data = data;
@@ -98,7 +81,7 @@ int		bousti_put_in_end_circ(t_list **list, void *data)
   t_list	*root;
 
   ret = 1;
-  new_elem = std_malloc(sizeof(t_list *));
+  new_elem = std_malloc(sizeof(t_list));
   if (new_elem)
     {
       new_elem->data = data;
@@ -119,7 +102,7 @@ int		bousti_put_in_circ(t_list **list, void *data)
   t_list	*root;
 
   ret = 1;
-  new_elem = std_malloc(sizeof(t_list *));
+  new_elem = std_malloc(sizeof(t_list));
   if (new_elem)
     {
       new_elem->data = data;
