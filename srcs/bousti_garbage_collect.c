@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Fri Apr 15 11:12:36 2016 Luca Ungaro
-** Last update Fri Apr 15 11:16:08 2016 Luca Ungaro
+** Last update Sun Apr 24 18:26:26 2016 Luca Ungaro
 */
 
 #include "bouf.h"
@@ -16,7 +16,7 @@ static void		_bousti_unique_garbage(void)
   t_bousti_unique_alloc	*elem;
 
   loop = g_unique_alloc_list;
-  while (loop && loop->data)
+  while (loop)
     {
       elem = (t_bousti_unique_alloc *)(loop->data);
       if (elem)
@@ -37,7 +37,7 @@ static void		_bousti_garbage(void)
   t_bousti_alloc	*elem;
 
   loop = g_alloc_list;
-  while (loop && loop->data)
+  while (loop)
     {
       elem = (t_bousti_alloc *)(loop->data);
       if (elem)
@@ -46,8 +46,10 @@ static void		_bousti_garbage(void)
 	    std_free(elem->addr);
 	  bousti_stack_pop(&g_alloc_list, elem);
 	  std_free(elem);
+	  loop = g_alloc_list;
 	}
-      loop = loop->next;
+      else
+	loop = loop->next;
     }
   std_free(g_alloc_list);
 }

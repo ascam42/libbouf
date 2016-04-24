@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 16:44:51 2016 Luca Ungaro
-** Last update Mon Apr 18 16:17:55 2016 Luca Ungaro
+** Last update Sun Apr 24 11:50:37 2016 Luca Ungaro
 */
 
 #ifndef HIDDEN_BOUF_H_
@@ -61,7 +61,7 @@
 #   define bousti_printf	printf
 #   define bousti_fdprintf	dprintf
 #   define bousti_dprintf	dprintf
-#   define bousti_atoi		getnbr
+#   define bousti_atoi		atoi
 #   define bousti_strlen	strlen
 #   define bousti_strcmp	strcmp
 #   define bousti_strncmp	strncmp
@@ -159,7 +159,7 @@ void			*bousti_unique_realloc(void		*owner,
 void			*bousti_unique_calloc(void		*owner,
 					      size_t		nmemb,
 					      size_t		size);
-size_t			bousti_get_allocated_size(void		*addr); // consider uniques
+size_t			bousti_get_allocated_size(void		*addr);
 size_t			bousti_get_total_allocated_size(void);
 void			bousti_free(void			*ptr);
 void			bousti_garbage_collect(void);
