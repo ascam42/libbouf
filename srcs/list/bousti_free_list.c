@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Fri Oct 30 18:39:10 2015 Luca Ungaro
-** Last update Sun Apr 24 21:57:39 2016 Luca Ungaro
+** Last update Thu Apr 28 19:55:33 2016 Luca Ungaro
 */
 #include "bouf.h"
 
@@ -18,10 +18,10 @@ void		bousti_free_list(t_list *list)
       tmp = list;
       list = list->next;
       if (tmp->data)
-	std_free(tmp->data);
-      std_free(tmp);
+	bousti_free(tmp->data);
+      bousti_free(tmp);
     }
-  std_free(list);
+  bousti_free(list);
 }
 
 void		bousti_free_list_fct(t_list *list,

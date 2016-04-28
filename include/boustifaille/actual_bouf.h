@@ -5,14 +5,14 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 16:44:51 2016 Luca Ungaro
-** Last update Sun Apr 24 11:50:37 2016 Luca Ungaro
+** Last update Thu Apr 28 19:56:46 2016 Luca Ungaro
 */
 
-#ifndef HIDDEN_BOUF_H_
-# define HIDDEN_BOUF_H_
+#ifndef ACTUAL_BOUF_H_
+# define ACTUAL_BOUF_H_
 
 # ifndef BOUF_H_
-#  error	"You shall not include boustifaille/hidden_bouf.h directly."
+#  error	"You shall not include boustifaille/actual_bouf.h directly."
 #  warning	"Source : BOUF_H_ undefined"
 
 # else /* BOUF_H_ */
@@ -111,8 +111,7 @@ typedef bool			t_bousti_ok;
 ** |                                                                           |
 ** | you can find their documentation in their own header file                 |
 ** |                                                                           |
-** | Note : they DO NOT use the BOUSTI_ALLOCATOR, even if it has been          |
-** | overloaded. But anyway, you can alloc/free datas with bousti_malloc/free  |
+** | Note : they DO use the BOUSTI_ALLOCATOR (whether it's overloaded or not)  |
 ** |                                                                           |
 ** +---------------------------------------------------------------------------+
 */
@@ -167,6 +166,25 @@ void			bousti_garbage_collect(void);
 /*
 ** +---------------------------------------------------------------------------+
 ** |                                                                           |
+** | BOUSTI_ALLOCATOR_OVERLOAD :                                               |
+** |      If you don't want to type bousti_malloc every 2 lines                |
+** |                                                                           |
+** | Note : if you want to use system allocation functions, use std_[...]alloc |
+** |                                                                           |
+** +---------------------------------------------------------------------------+
+*/
+# ifdef BOUSTI_ALLOCATOR_OVERLOAD
+
+#  define malloc		bousti_malloc
+#  define realloc		bousti_realloc
+#  define calloc		bousti_calloc
+#  define free			bousti_free
+
+# endif /* !BOUSTI_ALLOCATOR_OVERLOAD */
+
+/*
+** +---------------------------------------------------------------------------+
+** |                                                                           |
 ** | BOUSTI_ALLOCATOR_ABORT :                                                  |
 ** |      Exit when an allocation fails (with a nice and clean error message)  |
 ** |                                                                           |
@@ -180,74 +198,6 @@ void			bousti_garbage_collect(void);
 #  define BOUSTI_ALLOC_ERROR_MSG "Allocation failed : no space left on device."
 
 # endif /* !BOUSTI_ALLOCATOR_ABORT */
-
-/*
-**
-** BEGIN "you're not interested in this part"
-*/
-typedef void			*(*t_sysmalloc)(size_t	size);
-typedef void			*(*t_sysrealloc)(void	*ptr,
-						 size_t	size);
-typedef void			*(*t_syscalloc)(size_t	nmemb,
-						size_t	size);
-typedef void			(*t_sysfree)(void	*addr);
-
-extern t_sysmalloc		g_std_malloc;
-extern t_sysrealloc		g_std_realloc;
-extern t_syscalloc		g_std_calloc;
-extern t_sysfree		g_std_free;
-
-# define std_malloc		g_std_malloc
-# define std_realloc		g_std_realloc
-# define std_calloc		g_std_calloc
-# define std_free		g_std_free
-
-# ifdef BOUSTI_ALLOCATOR_OVERLOAD
-
-#  define malloc		bousti_malloc
-#  define realloc		bousti_realloc
-#  define calloc		bousti_calloc
-#  define free			bousti_free
-
-# endif /* !BOUSTI_ALLOCATOR_OVERLOAD */
-
-/*
-**
-** CLASSIC allocation
-*/
-typedef struct			s_bousti_alloc
-{
-  void				*addr;
-  size_t			size;
-}				t_bousti_alloc;
-
-extern t_bousti_list		*g_alloc_list;
-
-/*
-**
-** UNIQUE allocation (ever dreamed of std::unique_ptr ?)
-*/
-typedef struct			s_bousti_unique_alloc
-{
-  void				*owner;
-  void				*addr;
-  size_t			size;
-}				t_bousti_unique_alloc;
-
-extern t_bousti_list		*g_unique_alloc_list;
-
-/*
-**
-** Without the Holy Norm, this function would have been static :
-*/
-t_bousti_alloc		*find_with_address(void		*addr);
-t_bousti_unique_alloc	*find_unique_with_address(void	*addr);
-t_bousti_unique_alloc	*find_unique_with_owner(void	*addr);
-void			bousti_abort(void);
-/*
-**
-** END "you're not interested in this part"
-*/
 
 /*
 ** +---------------------------------------------------------------------------+
@@ -291,4 +241,4 @@ t_bousti_list		*bousti_stack_get_by_data(t_bousti_list	*list,
 
 # endif /* !BOUF_H_ */
 
-#endif /* !HIDDEN_BOUF_H_ */
+#endif /* !ACTUAL_BOUF_H_ */

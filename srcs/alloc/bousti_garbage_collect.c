@@ -5,14 +5,15 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Fri Apr 15 11:12:36 2016 Luca Ungaro
-** Last update Sun Apr 24 18:26:26 2016 Luca Ungaro
+** Last update Thu Apr 28 19:52:44 2016 Luca Ungaro
 */
 
 #include "bouf.h"
+#include "boustifaille/private_bouf.h"
 
 static void		_bousti_unique_garbage(void)
 {
-  t_bousti_list		*loop;
+  t_b_pv_stack		*loop;
   t_bousti_unique_alloc	*elem;
 
   loop = g_unique_alloc_list;
@@ -23,7 +24,7 @@ static void		_bousti_unique_garbage(void)
 	{
 	  if (elem->addr)
 	    std_free(elem->addr);
-	  bousti_stack_pop(&g_unique_alloc_list, elem);
+	  bousti_private_stack_pop(&g_unique_alloc_list, elem);
 	  std_free(elem);
 	}
       loop = loop->next;
@@ -33,7 +34,7 @@ static void		_bousti_unique_garbage(void)
 
 static void		_bousti_garbage(void)
 {
-  t_bousti_list		*loop;
+  t_b_pv_stack		*loop;
   t_bousti_alloc	*elem;
 
   loop = g_alloc_list;
@@ -44,7 +45,7 @@ static void		_bousti_garbage(void)
 	{
 	  if (elem->addr)
 	    std_free(elem->addr);
-	  bousti_stack_pop(&g_alloc_list, elem);
+	  bousti_private_stack_pop(&g_alloc_list, elem);
 	  std_free(elem);
 	  loop = g_alloc_list;
 	}

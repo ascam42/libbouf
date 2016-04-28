@@ -5,16 +5,17 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Fri Apr 15 11:17:47 2016 Luca Ungaro
-** Last update Fri Apr 15 11:22:46 2016 Luca Ungaro
+** Last update Thu Apr 28 19:52:36 2016 Luca Ungaro
 */
 
 #include "bouf.h"
+#include "boustifaille/private_bouf.h"
 
 static size_t		_total_unique_allocated_size(void)
 {
   size_t		ret;
   t_bousti_unique_alloc	*cur;
-  t_bousti_list		*loop;
+  t_b_pv_stack		*loop;
 
   ret = 0;
   loop = g_unique_alloc_list;
@@ -32,7 +33,7 @@ static size_t		_total_allocated_size(void)
 {
   size_t		ret;
   t_bousti_alloc	*cur;
-  t_bousti_list		*loop;
+  t_b_pv_stack		*loop;
 
   ret = 0;
   loop = g_alloc_list;

@@ -5,7 +5,7 @@
 ## Login   <ungaro_l@epitech.net>
 ## 
 ## Started on  Fri Oct  9 09:04:28 2015 Luca Ungaro
-## Last update Mon Apr 18 16:45:08 2016 Luca Ungaro
+## Last update Thu Apr 28 19:46:45 2016 Luca Ungaro
 ##
 
 AR	= ar rc
@@ -32,15 +32,15 @@ SRCS	= srcs/list/bousti_free_list.c \
 	  srcs/list/bousti_put_in_list.c \
 	  srcs/list/bousti_put_in_circ.c \
 	  srcs/list/bousti_show_list.c \
-	  srcs/bousti_unique_alloc.c \
-	  srcs/bousti_alloc.c \
-	  srcs/bousti_alloc_get.c \
-	  srcs/bousti_alloc_size.c \
-	  srcs/bousti_stack.c \
-	  srcs/bousti_free.c \
-	  srcs/bousti_garbage_collect.c \
-	  srcs/bousti_abort.c \
-	  srcs/bousti_stralloc.c
+	  srcs/alloc/bousti_unique_alloc.c \
+	  srcs/alloc/bousti_alloc.c \
+	  srcs/alloc/bousti_alloc_get.c \
+	  srcs/alloc/bousti_alloc_size.c \
+	  srcs/stack/bousti_stack.c \
+	  srcs/alloc/bousti_free.c \
+	  srcs/alloc/bousti_garbage_collect.c \
+	  srcs/alloc/bousti_abort.c \
+	  srcs/alloc/bousti_stralloc.c
 
 ifdef BOUSTI_ARCHIVE
 BOUSTI_ARCHIVE_OBJECTS = $(shell $(LIST) $(BOUSTI_ARCHIVE))
@@ -51,7 +51,7 @@ endif
 INCDEST	= ../
 
 HEAD	= include/bouf.h \
-	  include/boustifaille/hidden_bouf.h \
+	  include/boustifaille/actual_bouf.h \
 	  include/boustifaille/list.h \
 
 OBJS	= $(SRCS:.c=.o)

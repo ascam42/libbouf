@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Wed Dec  2 10:21:18 2015 Luca Ungaro
-** Last update Sun Apr 24 23:23:13 2016 Luca Ungaro
+** Last update Thu Apr 28 19:55:40 2016 Luca Ungaro
 */
 
 #include "bouf.h"
@@ -14,7 +14,7 @@ t_list		*bousti_create_root(void)
 {
   t_list	*root;
 
-  root = std_malloc(sizeof(t_list));
+  root = bousti_malloc(sizeof(t_list));
   if (root)
     {
       root->data = NULL;
@@ -48,7 +48,7 @@ int		bousti_put_in_dbcirc(t_list **list, void *data)
   t_list	*root;
 
   ret = 1;
-  new_elem = std_malloc(sizeof(t_list));
+  new_elem = bousti_malloc(sizeof(t_list));
   if (new_elem)
     {
       new_elem->data = data;
@@ -71,7 +71,7 @@ int		bousti_put_in_end_circ(t_list **list, void *data)
   t_list	*root;
 
   ret = 1;
-  new_elem = std_malloc(sizeof(t_list));
+  new_elem = bousti_malloc(sizeof(t_list));
   tmp = *list;
   while (tmp && tmp->next && tmp->next->data)
     tmp = tmp->next;
@@ -99,7 +99,7 @@ int		bousti_put_in_circ(t_list **list, void *data)
   t_list	*root;
 
   ret = 1;
-  new_elem = std_malloc(sizeof(t_list));
+  new_elem = bousti_malloc(sizeof(t_list));
   if (new_elem)
     {
       new_elem->data = data;

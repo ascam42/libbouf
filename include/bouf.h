@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 16:44:51 2016 Luca Ungaro
-** Last update Thu Apr 14 11:20:09 2016 Luca Ungaro
+** Last update Thu Apr 28 13:43:40 2016 Luca Ungaro
 */
 
 #ifndef BOUF_H_
@@ -35,7 +35,7 @@
 ** |                                                                           |
 ** +---------------------------------------------------------------------------+
 */
-#   include "boustifaille/hidden_bouf.h"
+#   include "boustifaille/actual_bouf.h"
 
 #  endif /* !(defined(BOUSTI_LIBMY) && defined(BOUSTI_LIBC)) */
 

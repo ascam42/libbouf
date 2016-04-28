@@ -5,12 +5,13 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Thu Apr 14 12:01:30 2016 Luca Ungaro
-** Last update Fri Apr 15 11:11:35 2016 Luca Ungaro
+** Last update Thu Apr 28 19:52:51 2016 Luca Ungaro
 */
 
 #include "bouf.h"
+#include "boustifaille/private_bouf.h"
 
-t_bousti_list	*g_unique_alloc_list = NULL;
+t_b_pv_stack	*g_unique_alloc_list = NULL;
 
 void			*bousti_unique_malloc(void	*owner,
 					      size_t	size)
@@ -25,7 +26,7 @@ void			*bousti_unique_malloc(void	*owner,
       new->owner = owner;
       new->addr = ptr;
       new->size = size;
-      bousti_stack_append(&g_unique_alloc_list, new);
+      bousti_private_stack_append(&g_unique_alloc_list, new);
     }
   else
     bousti_abort();
@@ -53,7 +54,7 @@ void			*bousti_unique_realloc(void	*owner,
 	  update->addr = ptr;
 	  update->size = size;
 	  if (new)
-	    bousti_stack_append(&g_unique_alloc_list, update);
+	    bousti_private_stack_append(&g_unique_alloc_list, update);
 	}
       else
 	bousti_abort();
@@ -77,7 +78,7 @@ void			*bousti_unique_calloc(void	*owner,
       new->owner = owner;
       new->addr = ptr;
       new->size = nmemb * size;
-      bousti_stack_append(&g_unique_alloc_list, new);
+      bousti_private_stack_append(&g_unique_alloc_list, new);
     }
   else
     bousti_abort();

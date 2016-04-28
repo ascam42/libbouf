@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Mon Oct 12 08:57:39 2015 Luca Ungaro
-** Last update Thu Apr 14 11:21:15 2016 Luca Ungaro
+** Last update Thu Apr 28 19:55:45 2016 Luca Ungaro
 */
 
 #include "bouf.h"
@@ -14,7 +14,7 @@ int		bousti_put_in_list(t_list **list, void *data)
 {
   t_list	*new;
 
-  new = std_malloc(sizeof(*new));
+  new = bousti_malloc(sizeof(*new));
   if (new ==  NULL)
     return (1);
   new->data = data;
@@ -29,7 +29,7 @@ int		bousti_put_in_end_list(t_list **list, void *data)
   t_list	*new;
 
   tmp = *list;
-  new = std_malloc(sizeof(*new));
+  new = bousti_malloc(sizeof(*new));
   if (new == NULL)
     return (1);
   if (tmp != NULL)
@@ -50,7 +50,7 @@ int		bousti_put_in_dblist(t_list **list, void *data)
 {
   t_list	*new;
 
-  new = std_malloc(sizeof(*new));
+  new = bousti_malloc(sizeof(*new));
   if (new ==  NULL)
     return (1);
   new->data = data;
@@ -66,7 +66,7 @@ int		bousti_put_in_end_dblist(t_list **list, void *data)
   t_list	*new;
 
   tmp = *list;
-  new = std_malloc(sizeof(*new));
+  new = bousti_malloc(sizeof(*new));
   if (new == NULL)
     return (1);
   if (tmp != NULL)

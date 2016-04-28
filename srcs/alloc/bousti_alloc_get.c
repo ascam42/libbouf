@@ -5,16 +5,17 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 19:13:50 2016 Luca Ungaro
-** Last update Fri Apr 15 11:17:38 2016 Luca Ungaro
+** Last update Thu Apr 28 19:52:32 2016 Luca Ungaro
 */
 
 # include "bouf.h"
+# include "boustifaille/private_bouf.h"
 
 t_bousti_alloc		*find_with_address(void	*addr)
 {
   t_bousti_alloc	*ret;
   t_bousti_alloc	*tmp;
-  t_bousti_list		*loop;
+  t_b_pv_stack		*loop;
 
   ret = NULL;
   loop = g_alloc_list;
@@ -32,7 +33,7 @@ t_bousti_unique_alloc		*find_unique_with_address(void	*addr)
 {
   t_bousti_unique_alloc	*ret;
   t_bousti_unique_alloc	*tmp;
-  t_bousti_list		*loop;
+  t_b_pv_stack		*loop;
 
   ret = NULL;
   loop = g_unique_alloc_list;
@@ -50,7 +51,7 @@ t_bousti_unique_alloc		*find_unique_with_owner(void	*addr)
 {
   t_bousti_unique_alloc	*ret;
   t_bousti_unique_alloc	*tmp;
-  t_bousti_list		*loop;
+  t_b_pv_stack		*loop;
 
   ret = NULL;
   loop = g_unique_alloc_list;
