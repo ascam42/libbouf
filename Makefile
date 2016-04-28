@@ -5,7 +5,7 @@
 ## Login   <ungaro_l@epitech.net>
 ## 
 ## Started on  Fri Oct  9 09:04:28 2015 Luca Ungaro
-## Last update Thu Apr 28 19:46:45 2016 Luca Ungaro
+## Last update Thu Apr 28 20:03:19 2016 Luca Ungaro
 ##
 
 AR	= ar rc
@@ -52,6 +52,8 @@ INCDEST	= ../
 
 HEAD	= include/bouf.h \
 	  include/boustifaille/actual_bouf.h \
+	  include/boustifaille/alloc_guard.h \
+	  include/boustifaille/private_bouf.h \
 	  include/boustifaille/list.h \
 
 OBJS	= $(SRCS:.c=.o)
