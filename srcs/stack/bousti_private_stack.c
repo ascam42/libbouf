@@ -5,13 +5,13 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Thu Apr 28 13:43:01 2016 Luca Ungaro
-** Last update Thu Apr 28 19:52:01 2016 Luca Ungaro
+** Last update Thu Apr 28 20:10:51 2016 Luca Ungaro
 */
 
 #include "bouf.h"
 #include "boustifaille/private_bouf.h"
 
-void		bousti_private_stack_push(t_b_pv_stack	**stack,
+int		bousti_private_stack_push(t_b_pv_stack	**stack,
 					  void		*data)
 {
   t_b_pv_stack	*new;
@@ -26,7 +26,7 @@ void		bousti_private_stack_push(t_b_pv_stack	**stack,
   return (0);
 }
 
-void		bousti_private_stack_append(t_b_pv_stack	**stack,
+int		bousti_private_stack_append(t_b_pv_stack	**stack,
 					    void		*data)
 {
   t_b_pv_stack	*tmp;
@@ -60,7 +60,8 @@ void		bousti_private_stack_pop(t_b_pv_stack	**stack,
 
   if (stack && *stack && elem)
     {
-      elem_node = bousti_stack_get_by_data(*stack, elem);
+      elem_node = (t_b_pv_stack *)
+	bousti_stack_get_by_data((t_bousti_list *)*stack, elem);
       if (!elem_node)
 	elem_node = (t_b_pv_stack *)(elem);
       if (elem_node)
@@ -81,7 +82,7 @@ void		bousti_private_stack_pop(t_b_pv_stack	**stack,
 
 void		bousti_free_private_stack(t_b_pv_stack	*stack)
 {
-  t_stack	*tmp;
+  t_b_pv_stack	*tmp;
 
   while (stack && stack->data)
     {

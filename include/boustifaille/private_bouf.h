@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Thu Apr 28 13:45:43 2016 Luca Ungaro
-** Last update Thu Apr 28 19:58:32 2016 Luca Ungaro
+** Last update Thu Apr 28 20:09:21 2016 Luca Ungaro
 */
 
 #ifndef PRIVATE_BOUF_H_
@@ -33,9 +33,9 @@ typedef struct			s_bousti_private_stack
 
 typedef t_bousti_private_stack	t_b_pv_stack;
 
-void	bousti_private_stack_push(t_b_pv_stack			**stack,
+int	bousti_private_stack_push(t_b_pv_stack			**stack,
 				  void				*data);
-void	bousti_private_stack_append(t_b_pv_stack		**stack,
+int	bousti_private_stack_append(t_b_pv_stack		**stack,
 				    void			*data);
 void	bousti_private_stack_pop(t_b_pv_stack			**stack,
 				 void				*elem);

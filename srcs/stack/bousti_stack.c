@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 18:43:31 2016 Luca Ungaro
-** Last update Sun Apr 24 18:27:48 2016 Luca Ungaro
+** Last update Thu Apr 28 20:11:55 2016 Luca Ungaro
 */
 
 # include "bouf.h"
@@ -40,7 +40,7 @@ void		bousti_stack_pop(t_bousti_list	**stack,
       if (!(*stack) || (*stack) == elem_node)
 	*stack = next;
       if (elem != elem_node)
-	std_free(elem_node);
+	bousti_free(elem_node);
     }
 }
 
