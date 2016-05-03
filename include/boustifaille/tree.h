@@ -5,13 +5,31 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue May  3 16:10:28 2016 Luca Ungaro
-** Last update Tue May  3 17:20:10 2016 Luca Ungaro
+** Last update Tue May  3 17:54:11 2016 Luca Ungaro
 */
 
 #ifndef TREE_H_
 # define TREE_H_
 
 # include <stdlib.h>
+
+/*
+** +---------------------------------------------------------------------------+
+** |                                                                           |
+** | Please welcome data trees !                                               |
+** |                                                                           |
+** | Their behavior is very alike lists'. Except there is more work on user's  |
+** | side. The only automatic actions are :                                    |
+** |                                                                           |
+** | - Create a new node with a certain data.                                  |
+** | - Create a new node in the left field of a "head" node                    |
+** | - Create a new node in the right field of a "head" node                   |
+** | - Link a new node in the head field of a node                             |
+** | - Link a new node in the left field of node                               |
+** | - Link a new node in the right field of node                              |
+** |                                                                           |
+** +---------------------------------------------------------------------------+
+*/
 
 typedef struct	s_tree
 {
@@ -36,13 +54,15 @@ t_bousti_tree	*bousti_put_in_right(t_bousti_tree	*head,
 /*
 ** bousti_link_in_tree.c
 */
-t_bousti_tree	*bouti_link_in_head(t_bousti_tree	*head,
+t_bousti_tree	*bouti_link_in_head(t_bousti_tree	*node,
 				    t_bousti_tree	*new);
-t_bousti_tree	*bouti_link_in_left(t_bousti_tree	*head,
+t_bousti_tree	*bouti_link_in_left(t_bousti_tree	*node,
 				    t_bousti_tree	*new);
-t_bousti_tree	*bouti_link_in_right(t_bousti_tree	*head,
+t_bousti_tree	*bouti_link_in_right(t_bousti_tree	*node,
 				     t_bousti_tree	*new);
-
+/*
+** bousti_free_tree.c
+*/
 void		bousti_free_tree(t_bousti_tree		*tree,
 				 t_bousti_ok		free_head);
 void		bousti_free_tree_fct(t_bousti_tree	*tree,
