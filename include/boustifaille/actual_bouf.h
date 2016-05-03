@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 16:44:51 2016 Luca Ungaro
-** Last update Thu Apr 28 19:56:46 2016 Luca Ungaro
+** Last update Tue May  3 16:43:10 2016 Luca Ungaro
 */
 
 #ifndef ACTUAL_BOUF_H_
@@ -109,13 +109,30 @@ typedef bool			t_bousti_ok;
 **
 ** +---------------------------------------------------------------------------+
 ** |                                                                           |
-** | you can find their documentation in their own header file                 |
+** | You can find their documentation in their own header file                 |
 ** |                                                                           |
 ** | Note : they DO use the BOUSTI_ALLOCATOR (whether it's overloaded or not)  |
 ** |                                                                           |
 ** +---------------------------------------------------------------------------+
 */
 #  include "boustifaille/list.h"
+
+/*
+** -----------------------------------------------------------------------------
+** . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+** . . . . . . . . . . . . . . . . . TREES . . . . . . . . . . . . . . . . . . .
+** . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+** -----------------------------------------------------------------------------
+**
+** +---------------------------------------------------------------------------+
+** |                                                                           |
+** | You can find their documentation in their own header file                 |
+** |                                                                           |
+** | Note : they DO use the BOUSTI_ALLOCATOR (whether it's overloaded or not)  |
+** |                                                                           |
+** +---------------------------------------------------------------------------+
+*/
+#  include "boustifaille/tree.h"
 
 /*
 ** -----------------------------------------------------------------------------

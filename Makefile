@@ -5,7 +5,7 @@
 ## Login   <ungaro_l@epitech.net>
 ## 
 ## Started on  Fri Oct  9 09:04:28 2015 Luca Ungaro
-## Last update Thu Apr 28 20:08:03 2016 Luca Ungaro
+## Last update Tue May  3 17:02:50 2016 Luca Ungaro
 ##
 
 AR	= ar rc
@@ -32,6 +32,9 @@ SRCS	= srcs/list/bousti_free_list.c \
 	  srcs/list/bousti_put_in_list.c \
 	  srcs/list/bousti_put_in_circ.c \
 	  srcs/list/bousti_show_list.c \
+	  srcs/tree/bousti_put_in_tree.c \
+	  srcs/tree/bousti_link_in_tree.c \
+	  srcs/tree/bousti_free_tree.c \
 	  srcs/alloc/bousti_unique_alloc.c \
 	  srcs/alloc/bousti_alloc.c \
 	  srcs/alloc/bousti_alloc_get.c \
@@ -54,6 +57,7 @@ INCDEST	= ../
 
 HEAD	= include/bouf.h \
 	  include/boustifaille/list.h \
+	  include/boustifaille/tree.h \
 	  include/boustifaille/actual_bouf.h \
 	  include/boustifaille/private_bouf.h \
 	  include/boustifaille/alloc_guard_bouf.h \
