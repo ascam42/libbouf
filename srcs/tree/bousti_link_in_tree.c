@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue May  3 16:50:31 2016 Luca Ungaro
-** Last update Tue May  3 17:54:18 2016 Luca Ungaro
+** Last update Wed May 04 16:56:07 2016 Luca Ungaro
 */
 
 #include "bouf.h"
@@ -15,9 +15,9 @@ t_bousti_tree	*bouti_link_in_head(t_bousti_tree	*node,
 {
   if (new)
     {
-      new->head = head;
-      if (head)
-	head->head = new;
+      new->head = node;
+      if (node)
+	node->head = new;
     }
   return (new);
 }
@@ -27,9 +27,9 @@ t_bousti_tree	*bouti_link_in_left(t_bousti_tree	*node,
 {
   if (new)
     {
-      new->head = head;
-      if (head)
-	head->left = new;
+      new->head = node;
+      if (node)
+	node->left = new;
     }
   return (new);
 }
@@ -39,9 +39,9 @@ t_bousti_tree	*bouti_link_in_right(t_bousti_tree	*node,
 {
   if (new)
     {
-      new->head = head;
-      if (head)
-	head->right = new;
+      new->head = node;
+      if (node)
+	node->right = new;
     }
   return (new);
 }
