@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 19:13:50 2016 Luca Ungaro
-** Last update Thu Apr 28 19:52:40 2016 Luca Ungaro
+** Last update Fri May 13 17:23:39 2016 Luca Ungaro
 */
 
 #include "bouf.h"
@@ -16,7 +16,7 @@ static void	_free(t_bousti_alloc	*elem)
   if (elem)
     {
       if (elem->addr)
-	free(elem->addr);
+	std_free(elem->addr);
       bousti_private_stack_pop(&g_alloc_list, elem);
     }
   free(elem);
@@ -30,7 +30,7 @@ static void	_unique_free(t_bousti_unique_alloc	*elem)
   while (elem)
     {
       if (elem->addr)
-	free(elem->addr);
+	std_free(elem->addr);
       bousti_private_stack_pop(&g_unique_alloc_list, elem);
       elem = find_unique_with_owner(ptr);
     }
@@ -47,6 +47,7 @@ void			bousti_free(void	*ptr)
   t_bousti_alloc	*elem;
   t_bousti_unique_alloc	*unique_elem;
 
+  printf("tirelipinpon\n");
   unique_elem = find_unique_with_owner(ptr);
   if (unique_elem)
     _unique_free(unique_elem);
@@ -55,4 +56,5 @@ void			bousti_free(void	*ptr)
     _free(elem);
   else
     std_free(ptr);
+  printf("zouf\n");
 }
