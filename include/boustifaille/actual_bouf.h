@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 16:44:51 2016 Luca Ungaro
-** Last update Thu May 05 17:48:56 2016 Luca Ungaro
+** Last update Mon May 16 10:40:57 2016 Luca Ungaro
 */
 
 #ifndef ACTUAL_BOUF_H_
@@ -153,8 +153,8 @@ typedef bool			t_bousti_ok;
 ** | bousti_get_total_allocated_size() : returns the total allocated size      |
 ** | bousti_free() : works exactly like system's free()                        |
 ** | bousti_garbage_collect() : frees all allocated blocks, plus internal      |
-** |                            stack. SHALL BE CALLED AT THE END OF YOUR      |
-** |                            PROGRAM EVEN IF EVERYTHING ELSE WAS FREED      |
+** |                            stack. Is called as a destructor so everything |
+** |                            is freed at exit.                              |
 ** |                                                                           |
 ** | Note : it goes without saying that bousti_get[...]size() and              |
 ** |        bousti_free[...] supposes your allocation has been made with       |
@@ -162,23 +162,30 @@ typedef bool			t_bousti_ok;
 ** |                                                                           |
 ** +---------------------------------------------------------------------------+
 */
-void			*bousti_malloc(size_t			size);
+void			*bousti_malloc(size_t			size)
+  __attribute__((malloc, alloc_size(1)));
 void			*bousti_realloc(void			*pre,
-					size_t			size);
+					size_t			size)
+  __attribute__((alloc_size(2)));
 void			*bousti_calloc(size_t			nmemb,
-				       size_t			size);
+				       size_t			size)
+  __attribute__((malloc, alloc_size(1, 2)));
 void			*bousti_unique_malloc(void		*owner,
-					      size_t		size);
+					      size_t		size)
+  __attribute__((malloc, alloc_size(2)));
 void			*bousti_unique_realloc(void		*owner,
 					       void		*ptr,
-					       size_t		size);
+					       size_t		size)
+  __attribute__((alloc_size(3)));
 void			*bousti_unique_calloc(void		*owner,
 					      size_t		nmemb,
-					      size_t		size);
+					      size_t		size)
+  __attribute__((malloc, alloc_size(2, 3)));
 size_t			bousti_get_allocated_size(void		*addr);
 size_t			bousti_get_total_allocated_size(void);
 void			bousti_free(void			*ptr);
-void			bousti_garbage_collect(void);
+void			bousti_garbage_collect(void)
+  __attribute__((destructor));
 
 /*
 ** +---------------------------------------------------------------------------+
@@ -209,12 +216,12 @@ void			bousti_garbage_collect(void);
 ** |                                                                           |
 ** +---------------------------------------------------------------------------+
 */
-# ifdef BOUSTI_ALLOCATOR_ABORT
+# if defined (BOUSTI_ALLOCATOR_ABORT) || defined(BOUSTI_ALLOCATOR_WARN)
 
 #  define BOUSTI_ALLOC_ERROR	-42
 #  define BOUSTI_ALLOC_ERROR_MSG "Allocation failed : no space left on device."
 
-# endif /* !BOUSTI_ALLOCATOR_ABORT */
+# endif /* !(BOUSTI_ALLOCATOR_ABORT && BOUSTI_ALLOCATOR_WARN) */
 
 /*
 ** +---------------------------------------------------------------------------+
@@ -233,9 +240,11 @@ void			bousti_garbage_collect(void);
 ** +---------------------------------------------------------------------------+
 */
 char			*bousti_stralloc(int			str_nb,
-					 ...);
+					 ...)
+  __attribute__((malloc));
 char			*bousti_stralloc_not_repeat(int		str_nb,
-						    ...);
+						    ...)
+  __attribute__((malloc));
 
 /*
 ** +---------------------------------------------------------------------------+
