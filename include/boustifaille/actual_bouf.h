@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 16:44:51 2016 Luca Ungaro
-** Last update Wed May 18 16:56:36 2016 Luca Ungaro
+** Last update Wed May 18 17:26:59 2016 Luca Ungaro
 */
 
 #ifndef ACTUAL_BOUF_H_
@@ -188,7 +188,7 @@ void			*bousti_unique_realloc(void		*owner,
 					       size_t		size);
 void			*bousti_unique_calloc(void		*owner,
 					      size_t		nmemb,
-					      size_t		size)
+					      size_t		size);
 size_t			bousti_get_allocated_size(void		*addr);
 size_t			bousti_get_total_allocated_size(void);
 void			bousti_free(void			*ptr);
@@ -277,7 +277,7 @@ typedef struct			s_bousti_rule
 typedef struct			s_bousti_syntax
 {
   const char			*name;
-  const t_bousti_rule		*components;
+  const t_bousti_rule		components;
 }				t_bousti_syntax;
 
 typedef struct			s_bousti_token
@@ -289,7 +289,7 @@ typedef struct			s_bousti_token
 ** associated is the last non-terminal rule of the grammar
 */
 
-typedef t_bousti_stack		t_bousti_token_stack;
+typedef t_bousti_list		t_bousti_token_stack;
 
 
 /*

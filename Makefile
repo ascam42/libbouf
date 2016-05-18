@@ -5,7 +5,7 @@
 ## Login   <ungaro_l@epitech.net>
 ## 
 ## Started on  Fri Oct  9 09:04:28 2015 Luca Ungaro
-## Last update Tue May  3 17:02:50 2016 Luca Ungaro
+## Last update Wed May 18 17:15:26 2016 Luca Ungaro
 ##
 
 AR	= ar rc
@@ -45,6 +45,8 @@ SRCS	= srcs/list/bousti_free_list.c \
 	  srcs/alloc/bousti_stralloc.c \
 	  srcs/stack/bousti_private_stack.c \
 	  srcs/stack/bousti_stack.c \
+	  srcs/lexer/lexer.c \
+	  srcs/lexer/get_rule.c \
 
 
 ifdef BOUSTI_ARCHIVE

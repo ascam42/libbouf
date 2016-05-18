@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Wed May 18 15:48:56 2016 Luca Ungaro
-** Last update Wed May 18 17:03:26 2016 Luca Ungaro
+** Last update Wed May 18 17:04:52 2016 Luca Ungaro
 */
 
 #include "bouf.h"
@@ -27,5 +27,6 @@ t_bousti_token_stack	*bousti_lexer(const t_bousti_syntax	*syntax,
   ** deref l'elem
   ** ...
   */
+
   return (ret);
 }
