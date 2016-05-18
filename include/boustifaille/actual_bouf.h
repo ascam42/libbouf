@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 16:44:51 2016 Luca Ungaro
-** Last update Mon May 16 18:14:14 2016 Luca Ungaro
+** Last update Wed May 18 16:56:36 2016 Luca Ungaro
 */
 
 #ifndef ACTUAL_BOUF_H_
@@ -176,30 +176,23 @@ typedef bool			t_bousti_ok;
 ** |                                                                           |
 ** +---------------------------------------------------------------------------+
 */
-void			*bousti_malloc(size_t			size)
-  __attribute__((malloc, alloc_size(1)));
+void			*bousti_malloc(size_t			size);
 void			*bousti_realloc(void			*pre,
-					size_t			size)
-  __attribute__((alloc_size(2)));
+					size_t			size);
 void			*bousti_calloc(size_t			nmemb,
-				       size_t			size)
-  __attribute__((malloc, alloc_size(1, 2)));
+				       size_t			size);
 void			*bousti_unique_malloc(void		*owner,
-					      size_t		size)
-  __attribute__((malloc, alloc_size(2)));
+					      size_t		size);
 void			*bousti_unique_realloc(void		*owner,
 					       void		*ptr,
-					       size_t		size)
-  __attribute__((alloc_size(3)));
+					       size_t		size);
 void			*bousti_unique_calloc(void		*owner,
 					      size_t		nmemb,
 					      size_t		size)
-  __attribute__((malloc, alloc_size(2, 3)));
 size_t			bousti_get_allocated_size(void		*addr);
 size_t			bousti_get_total_allocated_size(void);
 void			bousti_free(void			*ptr);
-void			bousti_garbage_collect(void)
-  __attribute__((destructor));
+void			bousti_garbage_collect(void);
 
 /*
 ** +---------------------------------------------------------------------------+
@@ -254,11 +247,50 @@ void			bousti_garbage_collect(void)
 ** +---------------------------------------------------------------------------+
 */
 char			*bousti_stralloc(int			str_nb,
-					 ...)
-  __attribute__((malloc));
+					 ...);
 char			*bousti_stralloc_not_repeat(int		str_nb,
-						    ...)
-  __attribute__((malloc));
+						    ...);
+
+/*
+** -----------------------------------------------------------------------------
+** . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+** . . . . . . . . . . . . . . . THE BOUSTI_LEXER. . . . . . . . . . . . . . . .
+** . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+** -----------------------------------------------------------------------------
+**
+*/
+typedef enum			e_bousti_token_type
+{
+  RULE = 0,
+  REGEXP = 2,
+  ONE_OR_MORE = 4,
+  ZERO_OR_MORE = 8,
+  ZERO_OR_ONE = 16
+}				t_bousti_token_type;
+
+typedef struct			s_bousti_rule
+{
+  const char			*exp;
+  t_bousti_token_type		type;
+}				t_bousti_rule;
+
+typedef struct			s_bousti_syntax
+{
+  const char			*name;
+  const t_bousti_rule		*components;
+}				t_bousti_syntax;
+
+typedef struct			s_bousti_token
+{
+  const char			*value;
+  t_bousti_rule			associated;
+}				t_bousti_token;
+/*
+** associated is the last non-terminal rule of the grammar
+*/
+
+typedef t_bousti_stack		t_bousti_token_stack;
+
 
 /*
 ** +---------------------------------------------------------------------------+
