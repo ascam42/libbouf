@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 16:44:51 2016 Luca Ungaro
-** Last update Fri May 20 12:09:21 2016 Luca Ungaro
+** Last update Fri May 20 13:04:25 2016 Luca Ungaro
 */
 
 #ifndef ACTUAL_BOUF_H_
@@ -219,16 +219,18 @@ void			bousti_garbage_collect(void);
 ** | BOUSTI_ALLOCATOR_ABORT :                                                  |
 ** |      Exit when an allocation fails (with a nice and clean error message)  |
 ** |                                                                           |
-** | Note : you shall define this macro when compiling libbouf.a !!! ;)        |
+** | Assign true to one of g_bousti_allocator_abort or g_bousti_allocator_warn |
+** | depending on what your heart desires. By default, both are set to false   |
+** |                                                                           |
+** | Note : g_bousti_allocator_[...] are ALREADY defined in libbouf !          |
 ** |                                                                           |
 ** +---------------------------------------------------------------------------+
 */
-# if defined (BOUSTI_ALLOCATOR_ABORT) || defined(BOUSTI_ALLOCATOR_WARN)
-
 #  define BOUSTI_ALLOC_ERROR	-42
 #  define BOUSTI_ALLOC_ERROR_MSG "Allocation failed : no space left on device."
 
-# endif /* !(BOUSTI_ALLOCATOR_ABORT && BOUSTI_ALLOCATOR_WARN) */
+extern bool		g_bousti_allocator_abort;
+extern bool		g_bousti_allocator_warn;
 
 /*
 ** +---------------------------------------------------------------------------+

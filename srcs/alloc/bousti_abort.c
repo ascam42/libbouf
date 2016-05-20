@@ -5,18 +5,24 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Thu Apr 14 11:41:42 2016 Luca Ungaro
-** Last update Mon May 16 10:31:43 2016 Luca Ungaro
+** Last update Fri May 20 13:01:50 2016 Luca Ungaro
 */
 
 #include "bouf.h"
 
+bool	g_bousti_allocator_abort = false;
+bool	g_bousti_allocator_warn = false;
+
 void	bousti_abort(void)
 {
-#if defined (BOUSTI_ALLOCATOR_ABORT)
-  bousti_garbage_collect();
-  bousti_fdprintf(STDERR, "%s\n", BOUSTI_ALLOC_ERROR_MSG);
-  exit(BOUSTI_ALLOC_ERROR);
-#elif defined (BOUSTI_ALLOCATOR_WARN)
-  bousti_fdprintf(STDERR, "%s\n", BOUSTI_ALLOC_ERROR_MSG);
-#endif
+  if (g_bousti_allocator_abort)
+    {
+      bousti_garbage_collect();
+      bousti_fdprintf(STDERR, "%s\n", BOUSTI_ALLOC_ERROR_MSG);
+      exit(BOUSTI_ALLOC_ERROR);
+    }
+  else if (g_bousti_allocator_warn)
+    {
+      bousti_fdprintf(STDERR, "%s\n", BOUSTI_ALLOC_ERROR_MSG);
+    }
 }
