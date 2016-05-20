@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 16:44:51 2016 Luca Ungaro
-** Last update Thu May 19 16:07:46 2016 Luca Ungaro
+** Last update Fri May 20 12:09:21 2016 Luca Ungaro
 */
 
 #ifndef ACTUAL_BOUF_H_
@@ -259,6 +259,8 @@ char			*bousti_stralloc_not_repeat(int		str_nb,
 ** -----------------------------------------------------------------------------
 **
 */
+typedef bool			(*t_bousti_check_exp)(const char	*exp);
+
 typedef enum			e_bousti_token_type
 {
   RULE = 0,
@@ -272,6 +274,7 @@ typedef struct			s_bousti_rule
 {
   const char			*exp;
   t_bousti_token_type		type;
+  const t_bousti_check_exp	check;
 }				t_bousti_rule;
 
 typedef struct			s_bousti_syntax
@@ -292,8 +295,13 @@ typedef struct			s_bousti_token
 
 typedef t_bousti_list		t_bousti_token_stack;
 
+/*
+** __attribute__((private))
+*/
 t_bousti_syntax		_get_rule_by_name(const t_bousti_syntax	*syntax,
 					  const char		*name);
+int	_check_regex_and_go_forward(const t_bousti_syntax	*terminal,
+				    const char			*exp);
 
 /*
 ** +---------------------------------------------------------------------------+
@@ -304,6 +312,8 @@ t_bousti_syntax		_get_rule_by_name(const t_bousti_syntax	*syntax,
 */
 void			bousti_stack_append(t_bousti_list	**stack,
 					    void		*elem);
+t_bousti_list		*bousti_concat_stack(t_bousti_list	*stack,
+					     t_bousti_list	*append);
 /*
 **
 ** Note : bousti_stack_pop

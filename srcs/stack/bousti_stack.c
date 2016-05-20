@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 18:43:31 2016 Luca Ungaro
-** Last update Thu Apr 28 20:11:55 2016 Luca Ungaro
+** Last update Fri May 20 12:04:13 2016 Luca Ungaro
 */
 
 # include "bouf.h"
@@ -57,4 +57,20 @@ t_bousti_list	*bousti_stack_get_by_data(t_bousti_list	*list,
       list = list->next;
     }
   return (ret);
+}
+
+t_bousti_list	*bousti_concat_stack(t_bousti_list	*stack,
+				     t_bousti_list	*append)
+{
+  t_bousti_list	*append_orig;
+
+  append_orig = append;
+  while (append && append->data)
+    {
+      bousti_stack_append(&stack, append->data);
+      append = append->next;
+    }
+  if (append_orig)
+    bousti_free_list(append_orig);
+  return (stack);
 }

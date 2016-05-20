@@ -5,7 +5,7 @@
 ## Login   <ungaro_l@epitech.net>
 ## 
 ## Started on  Fri Oct  9 09:04:28 2015 Luca Ungaro
-## Last update Wed May 18 17:15:26 2016 Luca Ungaro
+## Last update Fri May 20 12:47:34 2016 Luca Ungaro
 ##
 
 AR	= ar rc
@@ -47,6 +47,7 @@ SRCS	= srcs/list/bousti_free_list.c \
 	  srcs/stack/bousti_stack.c \
 	  srcs/lexer/lexer.c \
 	  srcs/lexer/get_rule.c \
+	  srcs/lexer/bousti_regex.c \
 
 
 ifdef BOUSTI_ARCHIVE
@@ -66,7 +67,7 @@ HEAD	= include/bouf.h \
 
 OBJS	= $(SRCS:.c=.o)
 
-override CFLAGS	+= -Iinclude
+CPPFLAGS+= -Iinclude
 
 all:	$(NAME)
 
@@ -84,7 +85,7 @@ ifdef BOUSTI_ARCHIVE
 endif
 
 .c.o:
-	@$(CC) -c $< -o $@ $(CFLAGS) && \
+	@$(CC) -c $< -o $@ $(CFLAGS) $(CPPFLAGS) && \
 	$(ECHO) [ $(GREEN)OK$(DEFAULT) ] $(CC) $< || \
 	$(ECHO) [ $(RED)KO$(DEFAULT) ] $(CC) $<
 
