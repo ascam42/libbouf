@@ -5,10 +5,11 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Wed May 18 15:48:56 2016 Luca Ungaro
-** Last update Fri May 20 13:07:01 2016 Luca Ungaro
+** Last update Fri May 20 16:53:12 2016 Luca Ungaro
 */
 
 #include "bouf.h"
+#include "boustifaille/private_bouf.h"
 
 /*
 ** TODO
@@ -25,6 +26,7 @@ t_bousti_token_stack	*bousti_lexer(const t_bousti_syntax	*syntax,
 				      const char		*base_rule_name)
 {
   int			i;
+  const char		*prev_expr;
   const char		*component_name;
   t_bousti_syntax	base_rule;
   t_bousti_syntax	rule;
@@ -39,7 +41,7 @@ t_bousti_token_stack	*bousti_lexer(const t_bousti_syntax	*syntax,
       component_name = base_rule.components[i].exp;
       rule = _get_rule_by_name(syntax, component_name);
       if (rule.terminal)
-	expr += _check_regex_and_go_forward(&rule, expr);
+	expr += _check_regex_and_go_forward(&rule, expr, &ret);
       else
 	{
 	  recurs = bousti_lexer(syntax, expr, rule.name);

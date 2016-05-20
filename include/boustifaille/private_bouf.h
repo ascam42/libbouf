@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Thu Apr 28 13:45:43 2016 Luca Ungaro
-** Last update Mon May 16 13:29:02 2016 Luca Ungaro
+** Last update Fri May 20 16:54:16 2016 Luca Ungaro
 */
 
 #ifndef PRIVATE_BOUF_H_
@@ -48,13 +48,13 @@ typedef struct			s_bousti_private_stack
 
 typedef t_bousti_private_stack	t_b_pv_stack;
 
-int	bousti_private_stack_push(t_b_pv_stack			**stack,
-				  void				*data);
-int	bousti_private_stack_append(t_b_pv_stack		**stack,
-				    void			*data);
-void	bousti_private_stack_pop(t_b_pv_stack			**stack,
-				 void				*elem);
-void	bousti_free_private_stack(t_b_pv_stack			*stack);
+int		bousti_private_stack_push(t_b_pv_stack		**stack,
+					  void			*data);
+int		bousti_private_stack_append(t_b_pv_stack	**stack,
+					    void		*data);
+void		bousti_private_stack_pop(t_b_pv_stack		**stack,
+					 void			*elem);
+void		bousti_free_private_stack(t_b_pv_stack		*stack);
 
 /*
 ** -----------------------------------------------------------------------------
@@ -110,10 +110,29 @@ extern t_bousti_private_stack	*g_unique_alloc_list;
 **
 ** Without the Holy Norm, this function would have been static :
 */
-t_bousti_alloc		*find_with_address(void		*addr);
-t_bousti_unique_alloc	*find_unique_with_address(void	*addr);
-t_bousti_unique_alloc	*find_unique_with_owner(void	*addr);
+t_bousti_alloc		*find_with_address(void			*addr);
+t_bousti_unique_alloc	*find_unique_with_address(void		*addr);
+t_bousti_unique_alloc	*find_unique_with_owner(void		*addr);
 void			bousti_abort(void);
+
+/*
+** -----------------------------------------------------------------------------
+** . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+** . . . . . . . . . . . . . . . THE BOUSTI_LEXER  . . . . . . . . . . . . . . .
+** . . . . . . . . . . . . . . (or its hidden part...) . . . . . . . . . . . . .
+** . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+** -----------------------------------------------------------------------------
+*/
+/*
+** Ah, norm, dear norm...
+*/
+typedef t_bousti_token		t_tkn;
+
+t_bousti_syntax	_get_rule_by_name(const t_bousti_syntax		*syntax,
+				  const char			*name);
+int	_check_regex_and_go_forward(const t_bousti_syntax	*terminal,
+				    const char			*exp,
+				    t_bousti_token_stack	**stack);
 
 # endif /* !(BOUF_H_ && ACTUAL_BOUF_H_) */
 

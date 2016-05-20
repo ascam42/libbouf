@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 16:44:51 2016 Luca Ungaro
-** Last update Fri May 20 13:04:25 2016 Luca Ungaro
+** Last update Fri May 20 17:23:02 2016 Luca Ungaro
 */
 
 #ifndef ACTUAL_BOUF_H_
@@ -260,8 +260,13 @@ char			*bousti_stralloc_not_repeat(int		str_nb,
 ** . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 ** -----------------------------------------------------------------------------
 **
+** +---------------------------------------------------------------------------+
+** |                                                                           |
+** | The BOUSTI_LEXER is a generic syntax lexer. It returns a stack of all  |
+** |                                                                           |
+** +---------------------------------------------------------------------------+
 */
-typedef bool			(*t_bousti_check_exp)(const char	*exp);
+typedef int			(*t_bousti_check_exp)(const char	*exp);
 
 typedef enum			e_bousti_token_type
 {
@@ -276,7 +281,7 @@ typedef struct			s_bousti_rule
 {
   const char			*exp;
   t_bousti_token_type		type;
-  const t_bousti_check_exp	check;
+  t_bousti_check_exp		check;
 }				t_bousti_rule;
 
 typedef struct			s_bousti_syntax
@@ -291,21 +296,18 @@ typedef struct			s_bousti_token
   const char			*value;
   t_bousti_rule			associated;
 }				t_bousti_token;
-/*
-** associated is the last non-terminal rule of the grammar
-*/
 
 typedef t_bousti_list		t_bousti_token_stack;
 
 /*
-** __attribute__((private))
-*/
-t_bousti_syntax		_get_rule_by_name(const t_bousti_syntax	*syntax,
-					  const char		*name);
-int	_check_regex_and_go_forward(const t_bousti_syntax	*terminal,
-				    const char			*exp);
-
-/*
+** -----------------------------------------------------------------------------
+** . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+** . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+** . . . . . . . . . . . . . . BOUSTI_MISCANELLOUS . . . . . . . . . . . . . . .
+** . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+** . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+** -----------------------------------------------------------------------------
+**
 ** +---------------------------------------------------------------------------+
 ** |                                                                           |
 ** | this is just a stack using t_bousti_list                                  |
