@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Wed May 18 15:48:56 2016 Luca Ungaro
-** Last update Fri May 20 16:53:12 2016 Luca Ungaro
+** Last update Fri May 20 18:05:31 2016 Luca Ungaro
 */
 
 #include "bouf.h"
@@ -20,6 +20,11 @@
 ** deref l'elem
 ** ...
 ** checker la syntaxe des qu'on trouve un terminal
+**
+**
+**
+**
+** GESTION DES REGLES OPTIONELLES !!!!
 */
 t_bousti_token_stack	*bousti_lexer(const t_bousti_syntax	*syntax,
 				      const char		*expr,

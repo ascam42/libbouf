@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 16:44:51 2016 Luca Ungaro
-** Last update Fri May 20 17:23:02 2016 Luca Ungaro
+** Last update Fri May 20 18:09:48 2016 Luca Ungaro
 */
 
 #ifndef ACTUAL_BOUF_H_
@@ -262,7 +262,13 @@ char			*bousti_stralloc_not_repeat(int		str_nb,
 **
 ** +---------------------------------------------------------------------------+
 ** |                                                                           |
-** | The BOUSTI_LEXER is a generic syntax lexer. It returns a stack of all  |
+** | The BOUSTI_LEXER is a generic syntax lexer. It returns a stack of tokens  |
+** | corresponding to the expresion splityted according to the syntax passed   |
+** | as parameter.                                                             |
+** |                                                                           |
+** | Note: if the syntax passed as parameter is invalid (contains multiple     |
+** |       possibilities for some cases...), tokenisation's behavior is        |
+** |       undefined.                                                          |
 ** |                                                                           |
 ** +---------------------------------------------------------------------------+
 */
@@ -271,7 +277,7 @@ typedef int			(*t_bousti_check_exp)(const char	*exp);
 typedef enum			e_bousti_token_type
 {
   RULE = 0,
-  REGEXP = 2,
+  TERMINAL = 2,
   ONE_OR_MORE = 4,
   ZERO_OR_MORE = 8,
   ZERO_OR_ONE = 16
