@@ -293,8 +293,8 @@ typedef struct			s_bousti_rule
 typedef struct			s_bousti_syntax
 {
   const char			*name;
-  const t_bousti_rule		*components;
   bool				terminal;
+  t_bousti_rule			components[];
 }				t_bousti_syntax;
 
 typedef struct			s_bousti_token

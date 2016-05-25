@@ -24,6 +24,7 @@ DEFAULT	= "\033[00m"
 GREEN	= "\033[0;32m"
 TEAL	= "\033[1;36m"
 RED	= "\033[0;31m"
+LOG_FILE= "./.compile.log"
 
 NAME	= libbouf.a
 
@@ -75,7 +76,7 @@ $(NAME):	$(OBJS)
 ifdef BOUSTI_ARCHIVE
 	@$(EXTRACT) $(BOUSTI_ARCHIVE)
 endif
-	@$(AR) $(NAME) $(OBJS) $(BOUSTI_ARCHIVE_OBJECTS) && \
+	@$(AR) $(NAME) $(OBJS) $(BOUSTI_ARCHIVE_OBJECTS) > $(LOG_FILE) 2>&1 && \
 	$(RANLIB) $(NAME) && \
 	$(CP) $(HEAD) $(INCDEST) && \
 	$(ECHO) "\n" [ $(GREEN)BOUSTIFAILLE : OK$(DEFAULT) ] "\n" || \
@@ -85,7 +86,7 @@ ifdef BOUSTI_ARCHIVE
 endif
 
 .c.o:
-	@$(CC) -c $< -o $@ $(CFLAGS) $(CPPFLAGS) && \
+	@$(CC) -c $< -o $@ $(CFLAGS) $(CPPFLAGS) > $(LOG_FILE) 2>&1 && \
 	$(ECHO) [ $(GREEN)OK$(DEFAULT) ] $(CC) $< || \
 	$(ECHO) [ $(RED)KO$(DEFAULT) ] $(CC) $<
 

@@ -31,7 +31,6 @@ t_bousti_token_stack	*bousti_lexer(const t_bousti_syntax	*syntax,
 				      const char		*base_rule_name)
 {
   int			i;
-  const char		*prev_expr;
   const char		*component_name;
   t_bousti_syntax	base_rule;
   t_bousti_syntax	rule;
