@@ -76,7 +76,7 @@ $(NAME):	$(OBJS)
 ifdef BOUSTI_ARCHIVE
 	@$(EXTRACT) $(BOUSTI_ARCHIVE)
 endif
-	@$(AR) $(NAME) $(OBJS) $(BOUSTI_ARCHIVE_OBJECTS) > $(LOG_FILE) 2>&1 && \
+	@$(AR) $(NAME) $(OBJS) $(BOUSTI_ARCHIVE_OBJECTS) >> $(LOG_FILE) 2>&1 && \
 	$(RANLIB) $(NAME) && \
 	$(CP) $(HEAD) $(INCDEST) && \
 	$(ECHO) "\n" [ $(GREEN)BOUSTIFAILLE : OK$(DEFAULT) ] "\n" || \
@@ -86,12 +86,13 @@ ifdef BOUSTI_ARCHIVE
 endif
 
 .c.o:
-	@$(CC) -c $< -o $@ $(CFLAGS) $(CPPFLAGS) > $(LOG_FILE) 2>&1 && \
+	@$(CC) -c $< -o $@ $(CFLAGS) $(CPPFLAGS) >> $(LOG_FILE) 2>&1 && \
 	$(ECHO) [ $(GREEN)OK$(DEFAULT) ] $(CC) $< || \
 	$(ECHO) [ $(RED)KO$(DEFAULT) ] $(CC) $<
 
 clean:
 	@$(RM) $(OBJS)
+	@$(RM) $(LOG_FILE)
 
 fclean:	clean
 	@$(RM) $(NAME) && \

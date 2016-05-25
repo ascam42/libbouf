@@ -294,7 +294,7 @@ typedef struct			s_bousti_syntax
 {
   const char			*name;
   bool				terminal;
-  t_bousti_rule			components[];
+  const t_bousti_rule		*components;
 }				t_bousti_syntax;
 
 typedef struct			s_bousti_token
