@@ -272,6 +272,8 @@ char			*bousti_stralloc_not_repeat(int		str_nb,
 ** |                                                                           |
 ** +---------------------------------------------------------------------------+
 */
+# define BOUSTI_NB_COMPONENTS_MAX	5
+
 typedef int			(*t_bousti_check_exp)(const char	*exp);
 
 typedef enum			e_bousti_token_type
@@ -294,7 +296,7 @@ typedef struct			s_bousti_syntax
 {
   const char			*name;
   bool				terminal;
-  const t_bousti_rule		*components;
+  t_bousti_rule			components[BOUSTI_NB_COMPONENTS_MAX + 1];
 }				t_bousti_syntax;
 
 typedef struct			s_bousti_token
