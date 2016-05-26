@@ -309,6 +309,15 @@ typedef struct			s_bousti_token
 typedef t_bousti_list		t_bousti_token_stack;
 
 /*
+** Err-logger
+*/
+# define BOUSTI_SYNTAX_ERR		"Syntax error near unexpected toke: "
+
+typedef void			(*t_bousti_errlog)(const char		*msg);
+
+extern t_bousti_errlog		g_bousti_errlog;
+
+/*
 ** -----------------------------------------------------------------------------
 ** . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 ** . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .

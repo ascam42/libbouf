@@ -24,16 +24,19 @@
 **
 **
 **
-** GESTION DES REGLES OPTIONELLES !!!!
+**
+**
+**
+** RETOUR EN CASCADE D'ERREUUUUUR
 */
 t_bousti_token_stack	*bousti_lexer(const t_bousti_syntax	*syntax,
 				      const char		*expr,
 				      const char		*base_rule_name)
 {
   int			i;
-  const char		*component_name;
   t_bousti_syntax	base_rule;
   t_bousti_syntax	rule;
+  t_bousti_rule		component;
   t_bousti_token_stack	*ret;
   t_bousti_token_stack	*recurs;
 
@@ -42,10 +45,10 @@ t_bousti_token_stack	*bousti_lexer(const t_bousti_syntax	*syntax,
   base_rule = _get_rule_by_name(syntax, base_rule_name);
   while (base_rule.components + i)
     {
-      component_name = base_rule.components[i].exp;
-      rule = _get_rule_by_name(syntax, component_name);
+      component = base_rule.components[i];
+      rule = _get_rule_by_name(syntax, component.exp);
       if (rule.terminal)
-	expr += _check_regex_and_go_forward(&rule, expr, &ret);
+	expr += _check_maybe_optionnal(&rule, component, expr, &ret);
       else
 	{
 	  recurs = bousti_lexer(syntax, expr, rule.name);

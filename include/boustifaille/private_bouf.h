@@ -130,9 +130,10 @@ typedef t_bousti_token		t_tkn;
 
 t_bousti_syntax	_get_rule_by_name(const t_bousti_syntax		*syntax,
 				  const char			*name);
-int	_check_regex_and_go_forward(const t_bousti_syntax	*terminal,
-				    const char			*exp,
-				    t_bousti_token_stack	**stack);
+int		_check_maybe_optionnal(const t_bousti_syntax	*terminal,
+				       const t_bousti_rule	calling,
+				       const char		*exp,
+				       t_bousti_token_stack	**stack);
 
 # endif /* !(BOUF_H_ && ACTUAL_BOUF_H_) */
 
