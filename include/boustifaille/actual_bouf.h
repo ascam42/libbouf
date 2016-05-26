@@ -278,11 +278,12 @@ typedef int			(*t_bousti_check_exp)(const char	*exp);
 
 typedef enum			e_bousti_token_type
 {
-  RULE = 0,
-  TERMINAL = 2,
-  ONE_OR_MORE = 4,
-  ZERO_OR_MORE = 8,
-  ZERO_OR_ONE = 16
+  NONE = 0,
+  RULE = 2,
+  TERMINAL = 4,
+  ONE_OR_MORE = 8,
+  ZERO_OR_MORE = 16,
+  ZERO_OR_ONE = 24
 }				t_bousti_token_type;
 
 typedef struct			s_bousti_rule

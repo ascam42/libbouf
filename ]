@@ -32,4 +32,5 @@ void		bousti_free_list_fct(t_list *list,
       list = list->next;
       free_node(tmp);
     }
+  free_node(list);
 }

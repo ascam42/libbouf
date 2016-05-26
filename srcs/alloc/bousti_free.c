@@ -47,7 +47,6 @@ void			bousti_free(void	*ptr)
   t_bousti_alloc	*elem;
   t_bousti_unique_alloc	*unique_elem;
 
-  printf("tirelipinpon\n");
   unique_elem = find_unique_with_owner(ptr);
   if (unique_elem)
     _unique_free(unique_elem);
@@ -56,5 +55,4 @@ void			bousti_free(void	*ptr)
     _free(elem);
   else
     std_free(ptr);
-  printf("zouf\n");
 }

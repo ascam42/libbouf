@@ -56,6 +56,8 @@ int		bousti_put_in_dblist(t_list **list, void *data)
   new->data = data;
   new->next = *list;
   new->prev = NULL;
+  if (*list)
+    *list->prev = new;
   *list = new;
   return (0);
 }
