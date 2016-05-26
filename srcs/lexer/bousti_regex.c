@@ -85,10 +85,10 @@ int	_check_maybe_optionnal(const t_bousti_syntax	*terminal,
 
   ret = 0;
   if (calling.type == ZERO_OR_MORE || calling.type == ONE_OR_MORE)
-    while ((new = _check_regex_and_go_forward(terminal, exp, stack)))
+    while ((new = _check_terminal_and_go_forward(terminal, exp, stack)))
       ret += new;
   else
-    ret = _check_regex_and_go_forward(terminal, exp, stack);
+  ret = _check_terminal_and_go_forward(terminal, exp, stack);
   if (!ret && calling.type != ZERO_OR_MORE && calling.type != ZERO_OR_ONE)
     {
       _raise_format_error(exp);
