@@ -211,6 +211,11 @@ void			bousti_garbage_collect(void);
 #  define calloc		bousti_calloc
 #  define free			bousti_free
 
+#  define unique_malloc		bousti_unique_malloc
+#  define unique_realloc	bousti_unique_realloc
+#  define unique_calloc		bousti_unique_calloc
+#  define unique_free		bousti_unique_free
+
 # endif /* !BOUSTI_ALLOCATOR_OVERLOAD */
 
 /*
@@ -270,6 +275,39 @@ char			*bousti_stralloc_not_repeat(int		str_nb,
 ** |       possibilities for some cases...), tokenisation's behavior is        |
 ** |       undefined.                                                          |
 ** |                                                                           |
+** |                                                                           |
+** | Here is how you shall use the parser :                                    |
+** |                                                                           |
+** | The syntax used by the bousti_lexer is defined as an array of             |
+** | t_bousti_syntax. An element is a "rule" of your syntax. Its name goes in  |
+** | the 'name' field. If it's a terminal rule, terminal shall be true. If it  |
+** | is false, the parser consider components as a rule. The components are an |
+** | an array of t_bousti_rule.                                                |
+** |                                                                           |
+** | A t_bousti_rule contains an expression (its name, when it's a RULE or its |
+** | ID if it's a TERMINAL). The type describes its usage. Note that it cannot |
+** | be both RULE and TERMINAL. Finally, check is a pointer to a function that |
+** | valides the synax of a terminal rule. It shall take a pointer to the      |
+** | beggining of the terminal to check and shall return the number of         |
+** | validated bytes (0 or more, but never less !)                             |
+** | The t_bousti_check_epx functions are yours to implement, so they can      |
+** | check the validity of your terminal expressions.                          |
+** |                                                                           |
+** |                                                                           |
+** | bousti_lexer returns a stack of t_bousti_token. This stack is equivalent  |
+** | to a t_bousti_list. If it is NULL, a lexing error occured. In case it's   |
+** | due to an unexpected token, the bousti_lexer will have printed the reason |
+** | to STDERR_FILENO.                                                         |
+** |                                                                           |
+** | The value contains the... content of the token (i.e. a segment of the     |
+** | expression lexed by bousti_lexer) and 'associated' points to the          |
+** | NON TERMINAL rule IMMEDIATLY ABOVE the terminal validated.                |
+** |                                                                           |
+** |                                                                           |
+** | IMPORTANT NOTE : the base rule passed as parameter to bousti_lexer CANNOT |
+** |                  be a terminal. If it is, it will be ignored and the      |
+** |                  expression won't be lexed correctly                      |
+** |                                                                           |
 ** +---------------------------------------------------------------------------+
 */
 # define BOUSTI_NB_COMPONENTS_MAX	5
@@ -311,11 +349,15 @@ typedef t_bousti_list		t_bousti_token_stack;
 /*
 ** Err-logger
 */
-# define BOUSTI_SYNTAX_ERR		"Syntax error near unexpected toke: "
+# define BOUSTI_SYNTAX_ERR		"Syntax error near unexpected token: "
 
 typedef void			(*t_bousti_errlog)(const char		*msg);
 
 extern t_bousti_errlog		g_bousti_errlog;
+
+t_bousti_token_stack	*bousti_lexer(const t_bousti_syntax	*syntax,
+				      const char		*expr,
+				      const char		*base_rule_name);
 
 /*
 ** -----------------------------------------------------------------------------

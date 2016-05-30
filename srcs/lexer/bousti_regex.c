@@ -38,6 +38,7 @@ static void	_raise_format_error(const char	*exp)
 ** this terminal rule
 */
 static int	_check_terminal_and_go_forward(const t_bousti_syntax	*termin,
+					       const t_bousti_rule	calling,
 					       const char		*exp,
 					       t_bousti_token_stack	**stack)
 {
@@ -55,7 +56,7 @@ static int	_check_terminal_and_go_forward(const t_bousti_syntax	*termin,
     }
   if (valid_size && (new_token = bousti_malloc(sizeof(t_bousti_token))))
     {
-      new_token->associated = termin->components[i];
+      new_token->associated = calling;
       tkn_value = malloc(valid_size);
       if (tkn_value)
 	{
@@ -74,6 +75,9 @@ static int	_check_terminal_and_go_forward(const t_bousti_syntax	*termin,
 **
 ** When raising an error, it logs out the cause using the g_bousti_errlog
 ** function, frees the current token stack and "nullifies" it.
+**
+** The "RULE" string associated to it is the very last before the terminal rule
+** in grammar's descending order
 */
 int	_check_maybe_optionnal(const t_bousti_syntax	*terminal,
 			       const t_bousti_rule	calling,
@@ -85,10 +89,11 @@ int	_check_maybe_optionnal(const t_bousti_syntax	*terminal,
 
   ret = 0;
   if (calling.type == ZERO_OR_MORE || calling.type == ONE_OR_MORE)
-    while ((new = _check_terminal_and_go_forward(terminal, exp, stack)))
+    while ((new = _check_terminal_and_go_forward(terminal, calling,
+						 exp, stack)))
       ret += new;
   else
-  ret = _check_terminal_and_go_forward(terminal, exp, stack);
+  ret = _check_terminal_and_go_forward(terminal, calling, exp, stack);
   if (!ret && calling.type != ZERO_OR_MORE && calling.type != ZERO_OR_ONE)
     {
       _raise_format_error(exp);
