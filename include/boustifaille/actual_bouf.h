@@ -296,8 +296,8 @@ char			*bousti_stralloc_not_repeat(int		str_nb,
 ** |                                                                           |
 ** | bousti_lexer returns a stack of t_bousti_token. This stack is equivalent  |
 ** | to a t_bousti_list. If it is NULL, a lexing error occured. In case it's   |
-** | due to an unexpected token, the bousti_lexer will have printed the reason |
-** | to STDERR_FILENO.                                                         |
+** | due to an unexpected token, the bousti_lexer will send an appropriate     |
+** | error message to the g_bousti_errlog function.                            |
 ** |                                                                           |
 ** | The value contains the... content of the token (i.e. a segment of the     |
 ** | expression lexed by bousti_lexer) and 'associated' points to the          |
