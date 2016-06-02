@@ -5,7 +5,7 @@
 ## Login   <ungaro_l@epitech.net>
 ## 
 ## Started on  Fri Oct  9 09:04:28 2015 Luca Ungaro
-## Last update Fri May 20 16:17:37 2016 Luca Ungaro
+## Last update Mon May 30 14:36:39 2016 samy ait-ouakli
 ##
 
 AR	= ar rc
@@ -49,6 +49,9 @@ SRCS	= srcs/list/bousti_free_list.c \
 	  srcs/lexer/bousti_lexer.c \
 	  srcs/lexer/bousti_get_rule.c \
 	  srcs/lexer/bousti_regex.c \
+	  srcs/hash/fct_hashage.c \
+	  srcs/hash/hash.c \
+	  srcs/hash/my_perr.c \
 
 
 ifdef BOUSTI_ARCHIVE
@@ -65,6 +68,7 @@ HEAD	= include/bouf.h \
 	  include/boustifaille/actual_bouf.h \
 	  include/boustifaille/private_bouf.h \
 	  include/boustifaille/alloc_guard_bouf.h \
+	  include/boustifaille/hash.h \
 
 OBJS	= $(SRCS:.c=.o)
 

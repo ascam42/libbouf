@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 16:44:51 2016 Luca Ungaro
-** Last update Fri May 20 18:09:48 2016 Luca Ungaro
+** Last update Mon May 30 14:33:05 2016 samy ait-ouakli
 */
 
 #ifndef ACTUAL_BOUF_H_
@@ -296,8 +296,8 @@ char			*bousti_stralloc_not_repeat(int		str_nb,
 ** |                                                                           |
 ** | bousti_lexer returns a stack of t_bousti_token. This stack is equivalent  |
 ** | to a t_bousti_list. If it is NULL, a lexing error occured. In case it's   |
-** | due to an unexpected token, the bousti_lexer will send an appropriate     |
-** | error message to the g_bousti_errlog function.                            |
+** | due to an unexpected token, the bousti_lexer will have printed the reason |
+** | to STDERR_FILENO.                                                         |
 ** |                                                                           |
 ** | The value contains the... content of the token (i.e. a segment of the     |
 ** | expression lexed by bousti_lexer) and 'associated' points to the          |
@@ -341,7 +341,7 @@ typedef struct			s_bousti_syntax
 typedef struct			s_bousti_token
 {
   const char			*value;
-  t_bousti_rule			associated;
+ const char			*associated_rulename;
 }				t_bousti_token;
 
 typedef t_bousti_list		t_bousti_token_stack;
@@ -349,7 +349,7 @@ typedef t_bousti_list		t_bousti_token_stack;
 /*
 ** Err-logger
 */
-# define BOUSTI_SYNTAX_ERR		"Syntax error near unexpected token: "
+# define BOUSTI_SYNTAX_ERR		"Syntax error near unexpected token:"
 
 typedef void			(*t_bousti_errlog)(const char		*msg);
 
@@ -357,7 +357,7 @@ extern t_bousti_errlog		g_bousti_errlog;
 
 t_bousti_token_stack	*bousti_lexer(const t_bousti_syntax	*syntax,
 				      const char		*expr,
-				      const char		*base_rule_name);
+				      const char	*base_rule_name);
 
 /*
 ** -----------------------------------------------------------------------------
@@ -387,6 +387,11 @@ void			bousti_stack_pop(t_bousti_list		**stack,
 					 void			*elem);
 t_bousti_list		*bousti_stack_get_by_data(t_bousti_list	*list,
 						  void		*data);
+
+/*
+** hash.h
+*/
+#  include "boustifaille/hash.h"
 
 # endif /* !BOUF_H_ */
 
