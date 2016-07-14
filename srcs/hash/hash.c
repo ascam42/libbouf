@@ -5,7 +5,7 @@
 ** Login   <aitoua_s@epitech.net>
 ** 
 ** Started on  Tue May 24 13:52:32 2016 samy ait-ouakli
-** Last update Thu Jun  2 18:20:11 2016 samy ait-ouakli
+** Last update Fri Jun  3 14:58:19 2016 samy ait-ouakli
 */
 
 #include "bouf.h"

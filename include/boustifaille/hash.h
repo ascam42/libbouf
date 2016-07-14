@@ -5,7 +5,7 @@
 ** Login   <aitoua_s@epitech.net>
 ** 
 ** Started on  Tue May 24 13:53:30 2016 samy ait-ouakli
-** Last update Thu Jun  2 18:21:02 2016 samy ait-ouakli
+** Last update Fri Jun  3 14:59:27 2016 samy ait-ouakli
 */
 
 #ifndef HASH_H_

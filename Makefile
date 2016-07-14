@@ -5,7 +5,7 @@
 ## Login   <ungaro_l@epitech.net>
 ## 
 ## Started on  Fri Oct  9 09:04:28 2015 Luca Ungaro
-## Last update Mon May 30 14:36:39 2016 samy ait-ouakli
+## Last update Fri Jun  3 11:53:58 2016 nicolas tsolissos
 ##
 
 AR	= ar rc
@@ -44,6 +44,7 @@ SRCS	= srcs/list/bousti_free_list.c \
 	  srcs/alloc/bousti_garbage_collect.c \
 	  srcs/alloc/bousti_abort.c \
 	  srcs/alloc/bousti_stralloc.c \
+	  srcs/alloc/bousti_strdup.c \
 	  srcs/stack/bousti_private_stack.c \
 	  srcs/stack/bousti_stack.c \
 	  srcs/lexer/bousti_lexer.c \

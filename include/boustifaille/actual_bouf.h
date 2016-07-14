@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 16:44:51 2016 Luca Ungaro
-** Last update Mon May 30 14:33:05 2016 samy ait-ouakli
+** Last update Fri Jun  3 17:26:26 2016 nicolas tsolissos
 */
 
 #ifndef ACTUAL_BOUF_H_
@@ -85,7 +85,6 @@
 #   define bousti_strcpy	strcpy
 #   define bousti_strncpy	strncpy
 #   define bousti_strstr	strstr
-#   define bousti_strdup	strdup
 
 #  endif /* !(!defined(BOUSTI_LIBMY) || defined(BOUSTI_LIBC)) */
 
@@ -216,6 +215,8 @@ void			bousti_garbage_collect(void);
 #  define unique_calloc		bousti_unique_calloc
 #  define unique_free		bousti_unique_free
 
+#  define strdup		bousti_strdup
+
 # endif /* !BOUSTI_ALLOCATOR_OVERLOAD */
 
 /*
@@ -257,6 +258,8 @@ char			*bousti_stralloc(int			str_nb,
 					 ...);
 char			*bousti_stralloc_not_repeat(int		str_nb,
 						    ...);
+
+char			*bousti_strdup(const char		*s);
 
 /*
 ** -----------------------------------------------------------------------------
@@ -341,7 +344,7 @@ typedef struct			s_bousti_syntax
 typedef struct			s_bousti_token
 {
   const char			*value;
- const char			*associated_rulename;
+  const char			*associated_rulename;
 }				t_bousti_token;
 
 typedef t_bousti_list		t_bousti_token_stack;

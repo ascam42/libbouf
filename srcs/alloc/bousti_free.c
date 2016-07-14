@@ -5,7 +5,7 @@
 ** Login   <ungaro_l@epitech.net>
 ** 
 ** Started on  Tue Apr 12 19:13:50 2016 Luca Ungaro
-** Last update Fri May 13 17:23:39 2016 Luca Ungaro
+** Last update Thu Jun  2 22:08:05 2016 nicolas tsolissos
 */
 
 #include "bouf.h"
@@ -56,3 +56,4 @@ void			bousti_free(void	*ptr)
   else
     std_free(ptr);
 }
+
