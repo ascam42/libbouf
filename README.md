@@ -1,6 +1,8 @@
 # Libbouf
 A library on top of LibC that tracks allocations and more...
 
+The libbouf is an 'on-top' C library. It has been designed to be used with Epitech's `libmy` or the very `LibC`.
+
 Summary
 * [Get the LibBouf](#Get-the-LibBouf)
 * [Builf the LibBouf and with the LibBouf](#Get-the-LibBouf-and-with-the-LibBouf)
