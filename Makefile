@@ -1,5 +1,5 @@
 ##
-## Makefile for lib_make in /home/ungaro_l/rendu/Piscine_C_J10
+## Makefile for libbouf in /home/luca/lib/libbouf
 ## 
 ## Made by Luca Ungaro
 ## Login   <ungaro_l@epitech.net>
