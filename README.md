@@ -5,7 +5,7 @@ The libbouf is an 'on-top' C library. It has been designed to be used with Epite
 
 Summary
 * [Get the LibBouf](#get-the-libbouf)
-* [Build the LibBouf and with the LibBouf](#get-the-libbouf-and-with-the-libbouf)
+* [Build the LibBouf and build with the LibBouf](#build-the-libbouf-and-build-with-the-libbouf)
 
 
 
@@ -17,7 +17,7 @@ You also may want to add it as a submodule in your working git repository
 
 
 
-## Build the LibBouf and with the LibBouf
+## Build the LibBouf and build with the LibBouf
 
 Your repo shall be organised like this :
 
@@ -34,7 +34,7 @@ Your repo shall be organised like this :
 	└── include
 	    └── #Your headers
 
-*NOTE:* the `WORKING_ROOT/include` directory shall be included (`-Iinclude`) in your compilation. It will contain libbouf's headers (after libbouf compilation).
+**NOTE:** the `WORKING_ROOT/include` directory shall be included (`-Iinclude`) in your compilation. It will contain libbouf's headers (after libbouf compilation).
 
 In your Makefile, add the following lines :
 
@@ -45,6 +45,5 @@ In your Makefile, add the following lines :
 
 Then, `make` your project.
 
-*NOTE:* Don't forget to add `$(LDFLAGS)` and `$(LDLIBS)`, along with `-Iinclude`
-
+**NOTE:** Don't forget to add `$(LDFLAGS)` and `$(LDLIBS)`, along with `-Iinclude`
 
