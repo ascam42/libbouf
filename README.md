@@ -4,14 +4,14 @@ A library on top of LibC that tracks allocations and more...
 The libbouf is an 'on-top' C library. It has been designed to be used with Epitech's `libmy` or the very `LibC`.
 
 Summary
-* [Get the LibBouf](#Get-the-LibBouf)
-* [Builf the LibBouf and with the LibBouf](#Get-the-LibBouf-and-with-the-LibBouf)
+* [Get the LibBouf](#get-the-libbouf)
+* [Build the LibBouf and with the LibBouf](#get-the-libbouf-and-with-the-libbouf)
 
 
 
 ## Get the LibBouf
 
-	git clone https://github.com/encein42/libbouf
+	git clone https://github.com/encein42/libbouf.git
 
 You also may want to add it as a submodule in your working git repository
 
