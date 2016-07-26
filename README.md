@@ -1,5 +1,5 @@
 # Libbouf
-## A library on top of LibC that tracks allocations and more...
+A library on top of LibC that tracks allocations and more...
 
 
 ## Get LibBouf
