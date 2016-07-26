@@ -1,15 +1,21 @@
 # Libbouf
 A library on top of LibC that tracks allocations and more...
 
+Summary
+* [Get the LibBouf](#Get-the-LibBouf)
+* [Builf the LibBouf and with the LibBouf](#Get-the-LibBouf-and-with-the-LibBouf)
 
-## Get LibBouf
+
+
+## Get the LibBouf
 
 	git clone https://github.com/encein42/libbouf
 
 You also may want to add it as a submodule in your working git repository
 
 
-## Build LibBouf
+
+## Build the LibBouf and with the LibBouf
 
 Your repo shall be organised like this :
 
@@ -21,12 +27,12 @@ Your repo shall be organised like this :
 	│   ├── README.md
 	│   └── srcs
 	│       └── #LibBouf's srcs...
-	├── your_Makefile
-	├── #your source files (where ever you want)
+	├── #Your Makefile
+	├── #Your source files (where ever you want)
 	└── include
 	    └── #Your headers
 
-**NOTE:** tht `WORKING_ROOT/include` directory shall be included (`-Iinclude`) in your compilation. It will contain libbouf's headers (after libbouf compilation)
+*NOTE:* the `WORKING_ROOT/include` directory shall be included (`-Iinclude`) in your compilation. It will contain libbouf's headers (after libbouf compilation).
 
 In your Makefile, add the following lines :
 
@@ -35,6 +41,8 @@ In your Makefile, add the following lines :
 	...
 	make -C libbouf/
 
-Then, `make` your project
-	
+Then, `make` your project.
+
+*NOTE:* Don't forget to add `$(LDFLAGS)` and `$(LDLIBS)`, along with `-Iinclude`
+
 
